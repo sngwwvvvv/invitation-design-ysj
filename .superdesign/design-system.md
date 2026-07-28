@@ -5,15 +5,15 @@
 - 산출물: 별도 빌드 과정이 필요 없는 한 페이지 정적 HTML 초청장
 - 대상: 개업식 초대 손님. 고령 사용자가 포함되므로 큰 글자, 높은 명암, 단순한 정보 흐름을 우선한다.
 - 핵심 행동: 행사 일시와 위치를 확인하고, 페이지 안의 네이버 지도를 살펴본 뒤 필요하면 네이버 지도 앱에서 길찾기를 연다.
-- 외부 이동: `네이버 지도 앱에서 길찾기` 버튼 외에는 허용하지 않는다. 전화번호와 이메일은 링크가 아닌 일반 텍스트다.
-- 정보는 접거나 숨기지 않는다. 전체 약력을 처음부터 표시한다.
+- 외부 이동: `네이버 지도 앱에서 길찾기` 버튼 외에는 허용하지 않는다.
+- 정보는 접거나 숨기지 않는다. 주요 경력 전체를 처음부터 표시한다.
 
 ## 정보 구조
 
 1. 하나의 상단 섹션: 로고, `호연회계법인에서의 새로운 출발을 알려드립니다`, 날짜·시간 placeholder, 장소
 2. 상단 섹션과 좁은 간격으로 이어지는 초청 소감문 placeholder
-3. 경력사항 소개: 인물 사진, 윤성중 부대표 이름·연락처, 전체 약력
-4. 오시는 길: 위치 중심 지도와 마커, 주소, 큰 앱 길찾기 버튼, 주차 안내 placeholder
+3. 경력사항 소개: 왼쪽 인물 사진, 오른쪽 윤성중 부대표 이름과 주요 경력
+4. 오시는 길: API 연결 전 지도 placeholder, 주소, 큰 앱 길찾기 버튼, 주차 안내 placeholder
 5. 축하 문구와 후원계좌 placeholder
 
 ## 시각 방향
@@ -48,7 +48,7 @@
 - 외부 웹폰트를 요청하지 않는 시스템 산세리프 스택을 사용한다.
 - 권장 스택: `Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif`.
 - 본문 최소 크기: 16px, 줄 높이 1.7.
-- 주소·연락처·지도 버튼: 18px 이상.
+- 주소·지도 버튼: 18px 이상.
 - 섹션 제목: 24~32px, 700 굵기.
 - 메인 제목: 모바일 34~42px, PC 48~60px. 지나치게 압축하거나 장식하지 않는다.
 - 대문자 영문 레이블이나 모노스페이스 글꼴은 사용하지 않는다.
@@ -58,29 +58,32 @@
 - 모든 화면에서 최대 폭 640px의 모바일 단일 열 구조를 사용한다.
 - PC에서는 같은 콘텐츠 폭을 페이지 중앙에 배치한다.
 - 미디어 쿼리와 JavaScript 기반 리사이즈 로직을 사용하지 않는다.
-- 경력사항은 인물 사진 → 윤성중 부대표 이름·연락처 → 전체 약력 순서로 모두 펼쳐 표시한다.
-- 인물 사진은 카드 폭 전체로 늘리지 않고 약 220~260px 범위로 제한해 중앙에 둔다.
-- 주요 경력 영역은 카드의 사용 가능한 전체 폭을 사용한다.
+- `경력사항 소개` 제목 바로 아래는 왼쪽 사진과 오른쪽 텍스트의 2열 구조로 표시한다.
+- 왼쪽 사진은 원본 비율을 유지하고 자르거나 왜곡하지 않는다. 사진 열의 아래쪽에 고정해 사진 하단과 마지막 경력 문구의 하단을 맞춘다.
+- 오른쪽에는 `윤성중 부대표`, `[ 주요 경력 ]`, 주요 경력 10개 항목만 표시한다.
+- 전화번호, 휴대전화, 이메일과 학력·자격 3개 문구는 경력사항에 표시하지 않는다.
+- 두 열의 간격은 좁은 화면에서도 경력 문구가 읽히는 범위에서 최소화한다.
 - 지도는 콘텐츠 폭 전체와 충분한 터치 높이를 사용한다.
 
 ## 이미지
 
 - 로고: `/img/hoyeon_logo_vertical.png`, 원본 비율 유지, 아이보리 또는 흰색 배경 위에 충분한 안전 여백 제공.
-- 인물 사진: `/img/portrait_ysj.png`, 얼굴과 상반신을 과도하게 자르지 않으며 왜곡하지 않는다.
+- 인물 사진: `/img/portrait_ysj.png`, 원본 전체를 `object-fit: contain`으로 표시하고 아래쪽에 정렬한다. 얼굴과 상반신을 자르거나 왜곡하지 않는다.
 - 별도의 장식 이미지와 아이콘 세트는 추가하지 않는다.
 
 ## 구성 요소
 
 - `InvitationHero`: 로고, `호연회계법인에서의 새로운 출발을 알려드립니다`, 날짜·시간 placeholder와 장소.
 - `ReflectionSection`: 상단 섹션과 좁은 간격으로 이어지는 소감문 placeholder.
-- `ProfileSection`: 경력사항 소개 제목, 인물 사진, 연락처, 전체 약력.
-- `MapSection`: 위치 중심 지도와 마커, 주소, 앱 길찾기 버튼, 주차 안내, 로딩 실패 안내.
+- `ProfileSection`: 경력사항 소개 제목, 왼쪽 인물 사진, 오른쪽 이름·주요 경력 목록.
+- `MapSection`: API 연결 전 빈 지도 placeholder, 운영 시 위치 중심 지도와 마커, 주소, 앱 길찾기 버튼, 주차 안내, 로딩 실패 안내.
 - `AccountNotice`: 축하 문구, 후원계좌 placeholder, 추후 모달과 복사 동작을 위한 버튼 자리.
 
 ## 동작 규칙
 
 - 유일한 외부 이동은 네이버 지도 앱 길찾기 버튼이다.
-- 지도는 검색 결과 패널이 열린 소비자용 iframe URL을 사용하지 않는다. 네이버 지도 JavaScript API로 초기 중심 좌표, 줌과 마커를 지정해 순수 지도 상태로 시작한다.
+- 지도는 iframe을 사용하지 않는다. API 키가 없는 디자인·개발 상태에서는 캡처 이미지 없이 고정 높이의 중립적인 placeholder에 `[네이버 지도 API 연결 영역]` 문구만 표시한다.
+- 운영 환경에서는 placeholder의 같은 DOM 영역에 네이버 Web Dynamic Map JavaScript API를 연결하고 초기 중심 좌표, 줌과 단일 마커를 지정한다.
 - 지도 로딩 실패 시 주소와 네이버 지도 앱 버튼은 그대로 사용할 수 있어야 한다.
 - `마음 전하실 곳` 버튼은 페이지 내부 모달을 실제로 열고 닫아야 한다. 정보가 확정되기 전에는 모달 안에 placeholder 상태를 명확히 표시한다.
 - 계좌번호 복사 시 하이픈을 제거한 숫자 문자열을 클립보드에 쓴다. 실패하면 사용자가 직접 선택할 수 있는 원문을 유지한다.
@@ -97,4 +100,4 @@
 
 ## Superdesign 생성 제약
 
-Use ONLY the fonts, colors, spacing, and component styles defined in this design system. Do not introduce any fonts, colors, gradients, shadows, decorative patterns, or visual styles not in the design system. Use one fixed mobile-width single-column layout on every viewport with no media queries. Keep the approved formal notice structure, show all career entries without collapse, and include working inline account-modal behavior in the preview.
+Use ONLY the fonts, colors, spacing, and component styles defined in this design system. Do not introduce any fonts, colors, gradients, shadows, decorative patterns, or visual styles not in the design system. Use one fixed mobile-width single-column page shell on every viewport with no media queries. In ProfileSection, keep the approved two-column B layout: uncropped bottom-aligned portrait on the left and name plus all ten career entries on the right, with both bottoms aligned. Do not show contact, education, or certification lines. Keep the map as a neutral placeholder until Web Dynamic Map credentials are provided, and include working inline account-modal behavior in the preview.
