@@ -40,7 +40,7 @@
   - `task-4-rereview.diff`
   - `task-4-review.diff`
   - `task-5-brief.md`
-  - `task-5-report.md`
+  - `task-5-review.diff`
 
 ## Remote metadata summary
 
