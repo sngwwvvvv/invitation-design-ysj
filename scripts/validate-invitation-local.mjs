@@ -9,6 +9,24 @@ if (!htmlPath || !cssPath) {
 const html = readFileSync(htmlPath, "utf8");
 const css = readFileSync(cssPath, "utf8");
 const all = `${html}\n${css}`;
+const approvedCareerEntries = [
+  "국세청 근무경력 30년",
+  "전 서울지방국세청 조사4국 조사팀장",
+  "전 서울지방국세청 국제거래조사국 조사팀장",
+  "전 성동세무서 법인세과장",
+  "전 동고양세무서 납세자보호담당관",
+  "전 서울지방국세청 송무국 상송팀장",
+  "전 서울지방국세청 조사1국 조사팀",
+  "전 서울지방국세청 조사2국 조사팀",
+  "전 서초세무서 조사과 조사팀장",
+  "전 강동세무서 재산세과 재산팀장",
+];
+const careerList = html.match(/<ul\b(?=[^>]*\bclass=["'][^"']*\bcareer-list\b[^"']*["'])[^>]*>([\s\S]*?)<\/ul>/i)?.[1];
+const careerEntries = careerList
+  ? [...careerList.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi)].map(([, entry]) => entry.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim())
+  : [];
+const hasApprovedCareerSequence =
+  careerEntries.length === approvedCareerEntries.length && careerEntries.every((entry, index) => entry === approvedCareerEntries[index]);
 const checks = [
   ["Korean document language", /<html[^>]+lang=["']ko["']/i.test(html)],
   ["stylesheet link", /<link\b(?=[^>]*\brel=["']stylesheet["'])(?=[^>]*\bhref=["']styles\.css["'])[^>]*>/i.test(html)],
@@ -22,6 +40,7 @@ const checks = [
   ["inline account details", ["우리은행", "049-087742-02-501", "윤성중"].every((value) => html.includes(value))],
   ["copy contract", /id=["']copy-account-number["']/.test(html) && /aria-live=["']polite["']/.test(html) && html.includes("writeText('04908774202501')")],
   ["copy feedback", html.includes("계좌번호가 복사되었습니다.") && html.includes("계좌번호를 길게 눌러 복사해 주세요.")],
+  ["approved career sequence", hasApprovedCareerSequence],
 ];
 
 let failed = false;
