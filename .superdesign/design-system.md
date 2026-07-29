@@ -4,8 +4,8 @@
 
 - 산출물: 별도 빌드 과정이 필요 없는 한 페이지 정적 HTML 초청장
 - 대상: 개업식 초대 손님. 고령 사용자가 포함되므로 큰 글자, 높은 명암, 단순한 정보 흐름을 우선한다.
-- 핵심 행동: 행사 일시와 위치를 확인하고, 페이지 안의 네이버 지도를 살펴본 뒤 필요하면 네이버 지도 앱에서 길찾기를 연다.
-- 외부 이동: `네이버 지도 앱에서 길찾기` 버튼 외에는 허용하지 않는다.
+- 핵심 행동: 행사 일시와 위치를 확인하고, 정적 지도 캡처와 삼성역 도보 안내를 살펴본 뒤 필요하면 네이버 지도에서 장소 정보를 확인한다.
+- 외부 이동: `네이버 지도에서 확인하기` 버튼 외에는 허용하지 않는다.
 - 정보는 접거나 숨기지 않는다. 주요 경력 전체를 처음부터 표시한다.
 
 ## 정보 구조
@@ -13,7 +13,7 @@
 1. 하나의 상단 섹션: 로고, `호연회계법인에서의 새로운 출발을 알려드립니다`, 날짜·시간 placeholder, 장소
 2. 상단 섹션과 좁은 간격으로 이어지는 초청 소감문 placeholder
 3. 경력사항 소개: 왼쪽 인물 사진, 오른쪽 윤성중 부대표 이름과 주요 경력
-4. 오시는 길: API 연결 전 지도 placeholder, 주소, 큰 앱 길찾기 버튼, 주차 안내 placeholder
+4. 오시는 길: 정적 지도 캡처, 주소, 2호선 삼성역 도보 안내, 큰 네이버 지도 확인 버튼, 주차 안내 placeholder
 5. 축하 문구와 후원계좌 placeholder
 
 ## 시각 방향
@@ -63,12 +63,14 @@
 - 오른쪽에는 `윤성중 부대표`, `[ 주요 경력 ]`, 주요 경력 10개 항목만 표시한다.
 - 전화번호, 휴대전화, 이메일과 학력·자격 3개 문구는 경력사항에 표시하지 않는다.
 - 두 열의 간격은 좁은 화면에서도 경력 문구가 읽히는 범위에서 최소화한다.
-- 지도는 콘텐츠 폭 전체와 충분한 터치 높이를 사용한다.
+- 지도 캡처는 콘텐츠 폭 전체를 사용하고 원본 비율을 유지한다.
 
 ## 이미지
 
 - 로고: `/img/hoyeon_logo_vertical.png`, 원본 비율 유지, 아이보리 또는 흰색 배경 위에 충분한 안전 여백 제공.
 - 인물 사진: `/img/portrait_ysj.png`, 원본 전체를 `object-fit: contain`으로 표시하고 아래쪽에 정렬한다. 얼굴과 상반신을 자르거나 왜곡하지 않는다.
+- 지도 캡처: `/img/map_capture.png`, 콘텐츠 폭 전체에 원본 비율로 표시한다.
+- 지하철 아이콘: `/img/Seoul_Metro_Line_2.svg.webp`, 원형 비율을 유지하고 `2호선 삼성역 5번출구에서 도보 약 10분` 문구 앞에 작은 크기로 배치한다.
 - 별도의 장식 이미지와 아이콘 세트는 추가하지 않는다.
 
 ## 구성 요소
@@ -76,15 +78,16 @@
 - `InvitationHero`: 로고, `호연회계법인에서의 새로운 출발을 알려드립니다`, 날짜·시간 placeholder와 장소.
 - `ReflectionSection`: 상단 섹션과 좁은 간격으로 이어지는 소감문 placeholder.
 - `ProfileSection`: 경력사항 소개 제목, 왼쪽 인물 사진, 오른쪽 이름·주요 경력 목록.
-- `MapSection`: API 연결 전 빈 지도 placeholder, 운영 시 위치 중심 지도와 마커, 주소, 앱 길찾기 버튼, 주차 안내, 로딩 실패 안내.
+- `MapSection`: 정적 지도 캡처, 주소, 2호선 삼성역 도보 안내, 네이버 지도 장소 확인 버튼, 주차 안내, 이미지 로딩 실패 안내.
 - `AccountNotice`: 축하 문구, 후원계좌 placeholder, 추후 모달과 복사 동작을 위한 버튼 자리.
 
 ## 동작 규칙
 
-- 유일한 외부 이동은 네이버 지도 앱 길찾기 버튼이다.
-- 지도는 iframe을 사용하지 않는다. API 키가 없는 디자인·개발 상태에서는 캡처 이미지 없이 고정 높이의 중립적인 placeholder에 `[네이버 지도 API 연결 영역]` 문구만 표시한다.
-- 운영 환경에서는 placeholder의 같은 DOM 영역에 네이버 Web Dynamic Map JavaScript API를 연결하고 초기 중심 좌표, 줌과 단일 마커를 지정한다.
-- 지도 로딩 실패 시 주소와 네이버 지도 앱 버튼은 그대로 사용할 수 있어야 한다.
+- 유일한 외부 이동은 `네이버 지도에서 확인하기` 버튼이다.
+- 지도는 iframe이나 Web Dynamic Map API를 사용하지 않고 `/img/map_capture.png` 정적 이미지만 표시한다.
+- 주소 바로 아래에 2호선 아이콘과 `2호선 삼성역 5번출구에서 도보 약 10분` 문구를 한 줄로 표시한다.
+- 네이버 지도 확인 버튼은 길찾기 메뉴가 아니라 `서울특별시 강남구 테헤란로81길 14` 주소 검색 결과와 장소 정보가 바로 보이는 URL을 연다.
+- 지도 이미지 로딩 실패 시에도 주소, 대중교통 안내와 네이버 지도 확인 버튼은 그대로 사용할 수 있어야 한다.
 - `마음 전하실 곳` 버튼은 페이지 내부 모달을 실제로 열고 닫아야 한다. 정보가 확정되기 전에는 모달 안에 placeholder 상태를 명확히 표시한다.
 - 계좌번호 복사 시 하이픈을 제거한 숫자 문자열을 클립보드에 쓴다. 실패하면 사용자가 직접 선택할 수 있는 원문을 유지한다.
 - 모달은 키보드로 열고 닫을 수 있고, 배경 클릭과 Escape로 닫을 수 있어야 한다.
@@ -100,4 +103,4 @@
 
 ## Superdesign 생성 제약
 
-Use ONLY the fonts, colors, spacing, and component styles defined in this design system. Do not introduce any fonts, colors, gradients, shadows, decorative patterns, or visual styles not in the design system. Use one fixed mobile-width single-column page shell on every viewport with no media queries. In ProfileSection, keep the approved two-column B layout: uncropped bottom-aligned portrait on the left and name plus all ten career entries on the right, with both bottoms aligned. Do not show contact, education, or certification lines. Keep the map as a neutral placeholder until Web Dynamic Map credentials are provided, and include working inline account-modal behavior in the preview.
+Use ONLY the fonts, colors, spacing, and component styles defined in this design system. Do not introduce any fonts, colors, gradients, shadows, decorative patterns, or visual styles not in the design system. Use one fixed mobile-width single-column page shell on every viewport with no media queries. In ProfileSection, keep the approved two-column B layout: uncropped bottom-aligned portrait on the left and name plus all ten career entries on the right, with both bottoms aligned. Do not show contact, education, or certification lines. In MapSection, use the provided static map capture at its original aspect ratio, add the Line 2 icon and walking guidance directly below the address, and label the single external button `네이버 지도에서 확인하기`; never render an iframe, API map, or directions form. Include working inline account-modal behavior in the preview.
