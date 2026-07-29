@@ -20,27 +20,8 @@
 
 - Command: `git status --short`
 - Result: no unstaged tracked implementation changes.
-- Scratch/evidence files currently untracked:
-  - `.playwright-cli/`
-  - `final-branch-review.diff`
-  - `output/`
-  - `progress.md`
-  - `qa-screenshots/`
-  - `task-1-brief.md`
-  - `task-1-review.diff`
-  - `task-2-brief.md`
-  - `task-2-review-final.diff`
-  - `task-2-review-fixed.diff`
-  - `task-2-review-round2.diff`
-  - `task-2-review.diff`
-  - `task-3-brief.md`
-  - `task-3-review-final.diff`
-  - `task-3-review.diff`
-  - `task-4-brief.md`
-  - `task-4-rereview.diff`
-  - `task-4-review.diff`
-  - `task-5-brief.md`
-  - `task-5-review.diff`
+- Scratch/evidence files currently untracked: SDD briefs, review packages, ledger scratch, browser/Playwright artifacts, and screenshot evidence only.
+- These files include `.playwright-cli/`, `output/`, `qa-screenshots/`, `progress.md`, `final-branch-review.diff`, and `task-*` brief/review package files. Review packages created after this report may add additional untracked `task-*review.diff` scratch files without changing the tracked implementation state.
 
 ## Remote metadata summary
 
