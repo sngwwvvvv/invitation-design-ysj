@@ -1,0 +1,34 @@
+﻿# Re-review package: c30ac6c..e9987d9
+
+## Commits
+e9987d9 docs: point browser QA to clean mobile evidence
+
+## Files changed
+ task-4-report.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+## Diff
+diff --git a/task-4-report.md b/task-4-report.md
+index 34a2e97..f801f18 100644
+--- a/task-4-report.md
++++ b/task-4-report.md
+@@ -1,18 +1,18 @@
+ ﻿Status: DONE
+ 
+ Preview URL: `https://p.superdesign.dev/draft/3098fb65-2a1d-4482-befb-f7e7cf88c2bd`
+ Draft ID: `3098fb65-2a1d-4482-befb-f7e7cf88c2bd`
+ 
+ Mobile viewport evidence
+ - Viewport: 390x900
+-- Screenshot: `C:\projects\invitation-design-ysj\qa-screenshots\task-4-mobile-390.png`
++- Screenshot: `C:\projects\invitation-design-ysj\output\playwright\task-4-mobile-390.png`
+ - DOM evidence:
+   - `scrollWidth` 390, `clientWidth` 390, no horizontal overflow
+   - `#intro-section` present as one continuous section, width 390
+   - Horizontal logo uses uploaded logo source with `filter: none` and `object-fit: contain`
+   - `#event-details` present and visually distinct
+   - Profile text and image do not overlap
+   - Map image present and uncropped
+   - Account card and copy button fit within the viewport; copy button width 276
+   - Live region present with `aria-live="polite"`
+ 

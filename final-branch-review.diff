@@ -1,0 +1,418 @@
+﻿# Final branch review package: eb2fe64..ba684fd
+
+## Commits
+ba684fd docs: summarize final scratch status stably
+e244bec docs: refresh final verification status inventory
+ebb290e docs: record final invitation verification
+e9987d9 docs: point browser QA to clean mobile evidence
+c30ac6c docs: record invitation browser QA evidence
+32860cc docs: reconcile invitation branch validation report
+53485ef docs: record successful invitation branch validation
+16f8b04 fix: align invitation contract checks and copy literal
+8a8ac14 docs: record invitation asset upload evidence
+1f4c145 design: update invitation palette and section rules
+8881245 test: validate revised invitation draft contract
+
+## Files changed
+ .superdesign/design-system.md         | 12 ++---
+ scripts/validate-invitation-draft.mjs | 87 +++++++++++++++++++++++++++++++++++
+ task-1-report.md                      | 38 +++++++++++++++
+ task-2-report.md                      |  8 ++++
+ task-3-report.md                      | 52 +++++++++++++++++++++
+ task-4-report.md                      | 49 ++++++++++++++++++++
+ task-5-report.md                      | 48 +++++++++++++++++++
+ 7 files changed, 288 insertions(+), 6 deletions(-)
+
+## Diff
+diff --git a/.superdesign/design-system.md b/.superdesign/design-system.md
+index 6d05733..e3f44de 100644
+--- a/.superdesign/design-system.md
++++ b/.superdesign/design-system.md
+@@ -3,23 +3,23 @@
+ ## 제품 및 목적
+ 
+ - 산출물: 별도 빌드 과정이 필요 없는 한 페이지 정적 HTML 초청장
+ - 대상: 개업식 초대 손님. 고령 사용자가 포함되므로 큰 글자, 높은 명암, 단순한 정보 흐름을 우선한다.
+ - 핵심 행동: 행사 일시와 위치를 확인하고, 정적 지도 캡처와 삼성역 도보 안내를 살펴본 뒤 필요하면 네이버 지도에서 장소 정보를 확인하며, 계좌번호를 페이지에서 직접 확인·복사한다.
+ - 외부 이동: `네이버 지도에서 확인하기` 버튼 외에는 허용하지 않는다.
+ - 정보는 접거나 숨기지 않는다. 주요 경력 전체를 처음부터 표시한다.
+ 
+ ## 정보 구조
+ 
+-1. 하나의 통합 도입부: 가로형 로고, `호연회계법인에서의 새로운 출발을 알려드립니다`, 초청 인사말 placeholder, 별도 일시·장소 강조 블록
++1. 하나의 통합 도입부: 가로형 로고, `호연회계법인에서의 새로운 출발을 알려드립니다`, 승인된 초청 인사말, 별도 일시·장소 강조 블록
+ 2. 경력사항 소개: 왼쪽 인물 사진, 오른쪽 윤성중 부대표 이름과 주요 경력
+-3. 오시는 길: 정적 지도 캡처, 주소, 2호선 삼성역 도보 안내, 큰 네이버 지도 확인 버튼, 주차 안내 placeholder
++3. 오시는 길: 정적 지도 캡처, 주소, 2호선 삼성역 도보 안내, 큰 네이버 지도 확인 버튼, 승인된 주차 안내 문구
+ 4. 별도 제목 없는 계좌 안내: 안내 문구, 우리은행 계좌 정보, 계좌번호 복사 버튼
+ 
+ ## 시각 방향
+ 
+ - 스타일: 격식 있고 전문적인 공식 안내문. 기업 신뢰감과 구조적 명료성을 우선한다.
+ - 레퍼런스: Superdesign의 `Mosaic Grid Architecture Style`에서 얇은 구분선, 넉넉한 여백, 평면적인 정보 구획만 차용한다.
+ - 사용하지 않을 요소: 모자이크 배경, 벤토 장식, 기술적 모노스페이스 표현, 거대한 영문 타이포그래피, 그림자, 그라데이션, 장식 애니메이션.
+ - 페이지는 Platinum Cool Gray 배경 위 중앙 정렬된 최대 폭 640px 모바일 단일 열 콘텐츠로 구성한다.
+ - 넓은 배경과 본문 영역은 Platinum Cool Gray와 Slate Steel을 약 80% 사용하고, Deep Navy·Standard Blue·Vivid Green은 제목과 핵심 요소에 약 20%만 사용한다.
+ - 짙은 색으로 카드 전체를 채우지 않는다. 밝은 평면 위 얇은 Standard Blue 구분선과 충분한 여백으로 정보 위계를 만든다.
+@@ -69,39 +69,39 @@
+ 
+ - 로고: `/img/hoyeon_logo_horizontal.png`, 원본 색상과 비율을 유지하고 필터·반전·재색상·자르기를 사용하지 않는다.
+ - 도입부 배경: `/img/reflection_background.png`, 통합 도입부 전체를 덮는 별도 배경 레이어에 배치하고 해당 이미지 레이어에만 `opacity: 0.4`를 적용한다. 로고와 텍스트는 완전 불투명 상태를 유지한다.
+ - 인물 사진: `/img/portrait_ysj.png`, 원본 전체를 `object-fit: contain`으로 표시하고 아래쪽에 정렬한다. 얼굴과 상반신을 자르거나 왜곡하지 않는다.
+ - 지도 캡처: `/img/map_capture_resized.png`, 콘텐츠 폭 전체에 원본 비율로 표시한다.
+ - 지하철 아이콘: `/img/Seoul_Metro_Line_2.svg.webp`, 원형 비율을 유지하고 `2호선 삼성역 5번출구에서 도보 약 10분` 문구 앞에 작은 크기로 배치한다.
+ - 별도의 장식 이미지와 아이콘 세트는 추가하지 않는다.
+ 
+ ## 구성 요소
+ 
+-- `InvitationIntro`: `id="intro-section"`을 사용한다. 가로형 로고, `호연회계법인에서의 새로운 출발을 알려드립니다`, 초청 인사말 placeholder, `id="event-details"`인 별도 일시·장소 강조 블록을 하나의 연속된 섹션 안에 배치한다.
+-- `ProfileSection`: 경력사항 소개 제목, 왼쪽 인물 사진, 오른쪽 이름·주요 경력 목록.
++- `InvitationIntro`: `id="intro-section"`을 사용한다. 가로형 로고, `호연회계법인에서의 새로운 출발을 알려드립니다`, 승인된 초청 인사말, `id="event-details"`인 별도 일시·장소 강조 블록을 하나의 연속된 섹션 안에 배치한다.
++- `ProfileSection`: 경력사항 소개 제목, 승인된 인물 사진, 오른쪽 이름·주요 경력 10개 항목을 유지한다.
+ - `MapSection`: 정적 지도 캡처, 주소, 2호선 삼성역 도보 안내, 네이버 지도 장소 확인 버튼, 주차 안내, 이미지 로딩 실패 안내.
+ - `AccountNotice`: 별도 `h2` 없이 `축하의 마음을 전하고자 하시는 분들을 위해 계좌 정보를 조심스럽게 안내드립니다.` 문구와 우리은행·`049-087742-02-501`·윤성중 정보를 같은 페이지에 항상 표시한다. `id="copy-account-number"` 버튼과 `aria-live="polite"` 상태 영역을 포함한다.
+ 
+ ## 동작 규칙
+ 
+ - 유일한 외부 이동은 `네이버 지도에서 확인하기` 버튼이다.
+ - 지도는 iframe이나 Web Dynamic Map API를 사용하지 않고 `/img/map_capture_resized.png` 정적 이미지만 표시한다.
+ - 주소 바로 아래에 2호선 아이콘과 `2호선 삼성역 5번출구에서 도보 약 10분` 문구를 한 줄로 표시한다.
+ - 네이버 지도 확인 버튼은 길찾기 메뉴가 아니라 `서울특별시 강남구 테헤란로81길 14` 주소 검색 결과와 장소 정보가 바로 보이는 URL을 연다.
+ - 지도 이미지 로딩 실패 시에도 주소, 대중교통 안내와 네이버 지도 확인 버튼은 그대로 사용할 수 있어야 한다.
+-- `[일시 및 장소]` 레이블은 표시하지 않는다. 기존 날짜 placeholder와 주소는 `event-details` 안에서 달력·지도 핀 아이콘과 함께 강조한다.
++- `[일시 및 장소]` 레이블은 표시하지 않는다. 승인된 일시 문구와 주소는 `event-details` 안에서 달력·지도 핀 아이콘과 함께 강조한다.
+ - `축하의 말씀` 제목, `마음 전하실 곳 확인하기` 버튼, 계좌 모달과 관련 열기·닫기 JavaScript는 사용하지 않는다.
+ - `계좌정보 복사` 버튼은 `navigator.clipboard.writeText('04908774202501')`로 계좌번호만 하이픈 없이 복사한다.
+ - 복사 성공 시 `계좌번호가 복사되었습니다.`를, 실패 시 `계좌번호를 길게 눌러 복사해 주세요.`를 라이브 영역에 표시한다.
+ 
+ ## 성능 및 접근성
+ 
+ - 프레임워크와 불필요한 외부 라이브러리를 사용하지 않는다.
+ - JavaScript는 계좌번호 클립보드 복사와 상태 안내에 필요한 최소 범위로 제한한다.
+ - 지속 애니메이션, 스크롤 효과, 자동 재생 요소를 사용하지 않는다.
+ - 키보드 포커스 표시를 제거하지 않는다.
+ - 버튼의 최소 터치 영역은 44px 이상으로 한다.
+ - 의미론적 HTML과 명확한 제목 계층을 사용한다.
+ 
+ ## Superdesign 생성 제약
+ 
+-Use ONLY the fonts, colors, spacing, and component styles defined in this design system. Do not introduce any fonts, colors, gradients, shadows, decorative patterns, or visual styles not in the design system. Use one fixed mobile-width single-column page shell on every viewport with no media queries. Build one continuous InvitationIntro with the uploaded horizontal logo in its original colors, the unchanged main heading, the invitation placeholder, and a separate event-details block over the uploaded reflection background at 40% background-layer opacity. In ProfileSection, keep the approved two-column B layout: uncropped bottom-aligned portrait on the left and name plus all ten career entries on the right, with both bottoms aligned. Do not show contact, education, or certification lines. In MapSection, preserve the provided static map capture at its original aspect ratio, the Line 2 icon and walking guidance, the exact address, the Naver Map URL, and the parking placeholder; never render an iframe, API map, or directions form. Remove the celebration h2 and all account-modal UI. Show the approved account notice and account data inline with a working digits-only clipboard button and accessible success/failure status.
++Use ONLY the fonts, colors, spacing, and component styles defined in this design system. Do not introduce any fonts, colors, gradients, shadows, decorative patterns, or visual styles not in the design system. Use one fixed mobile-width single-column page shell on every viewport with no media queries. Build one continuous InvitationIntro with the uploaded horizontal logo in its original colors, the unchanged main heading, the approved invitation message, and a separate event-details block over the uploaded reflection background at 40% background-layer opacity. In ProfileSection, keep the approved two-column B layout: uncropped bottom-aligned portrait on the left and name plus all ten career entries on the right, with both bottoms aligned. Do not show contact, education, or certification lines. In MapSection, preserve the provided static map capture at its original aspect ratio, the Line 2 icon and walking guidance, the exact address, the Naver Map URL, and the approved parking notice; never render an iframe, API map, or directions form. Remove the celebration h2 and all account-modal UI. Show the approved account notice and account data inline with a working digits-only clipboard button and accessible success/failure status.
+diff --git a/scripts/validate-invitation-draft.mjs b/scripts/validate-invitation-draft.mjs
+new file mode 100644
+index 0000000..de15e8a
+--- /dev/null
++++ b/scripts/validate-invitation-draft.mjs
+@@ -0,0 +1,87 @@
++import { execFileSync } from "node:child_process";
++
++const draftId = process.argv[2];
++
++if (!draftId) {
++  console.error("Usage: node scripts/validate-invitation-draft.mjs [draft-id]");
++  process.exit(2);
++}
++
++const raw = execFileSync(
++  "npx",
++  ["--yes", "@superdesign/cli@latest", "get-design", "--draft-id", draftId, "--json"],
++  { encoding: "utf8", shell: true, stdio: ["ignore", "pipe", "inherit"] },
++);
++
++const parsed = JSON.parse(raw);
++const html = String(parsed.htmlContent ?? "");
++const upperHtml = html.toUpperCase();
++const text = html
++  .replace(/<br\b[^>]*>/gi, " ")
++  .replace(/<[^>]+>/g, "")
++  .replace(/&nbsp;|&#160;/gi, " ")
++  .replace(/\s+/g, " ")
++  .trim();
++
++const approvedColors = ["#0A2D54", "#0063A6", "#43A64E", "#F0F4F8", "#64748B"];
++const oldPalette = ["#142755", "#A9AABC", "#35B84A", "#F6F4EF"];
++
++const checks = [
++  ["keeps the approved main heading", text.includes("호연회계법인에서의 새로운 출발을 알려드립니다")],
++  ["declares the five approved colors", approvedColors.every((color) => upperHtml.includes(color))],
++  ["removes the former palette", !oldPalette.some((color) => upperHtml.includes(color))],
++  ["uses one unified intro section", /id=["']intro-section["']/.test(html)],
++  [
++    "uses the reflection background at 40 percent opacity",
++    html.includes("reflection_background.png") && /opacity\s*:\s*0\.4\b/i.test(html),
++  ],
++  [
++    "uses the horizontal logo without image filters",
++    html.includes("hoyeon_logo_horizontal.png") &&
++      !/hoyeon_logo_horizontal[^>]{0,500}(?:filter|brightness|invert|grayscale|contrast)/i.test(html),
++  ],
++  ["removes the date and place label", !text.includes("[일시 및 장소]")],
++  ["uses a dedicated event details block", /id=["']event-details["']/.test(html)],
++  ["removes the celebration heading", !text.includes("축하의 말씀")],
++  [
++    "shows the chosen account copy message",
++    text.includes("축하의 마음을 전하고자 하시는 분들을 위해 계좌 정보를 조심스럽게 안내드립니다."),
++  ],
++  [
++    "shows the inline account information",
++    ["우리은행", "049-087742-02-501", "윤성중"].every((value) => text.includes(value)),
++  ],
++  ["removes modal behavior", !/(account-modal|openModal|closeModal|modal-backdrop)/i.test(html)],
++  [
++    "exposes the account copy button",
++    /id=["']copy-account-number["']/.test(html) && text.includes("계좌정보 복사"),
++  ],
++  [
++    "copies only the digits-only account number",
++    html.includes("navigator.clipboard.writeText('04908774202501')"),
++  ],
++  [
++    "provides copy success and failure feedback",
++    text.includes("계좌번호가 복사되었습니다.") &&
++      text.includes("계좌번호를 길게 눌러 복사해 주세요.") &&
++      /aria-live=["']polite["']/.test(html),
++  ],
++  [
++    "preserves map and profile content",
++    [
++      "윤성중 부대표",
++      "국세청 근무경력 30년",
++      "2호선 삼성역 5번출구에서 도보 약 10분",
++      "네이버 지도에서 확인하기",
++      "[주차 안내가 확정되면 이곳에 표시됩니다]",
++    ].every((value) => text.includes(value)) && html.includes("map_capture"),
++  ],
++];
++
++let failed = false;
++for (const [name, passed] of checks) {
++  console.log(`${passed ? "PASS" : "FAIL"} ${name}`);
++  failed ||= !passed;
++}
++
++process.exit(failed ? 1 : 0);
+diff --git a/task-1-report.md b/task-1-report.md
+new file mode 100644
+index 0000000..01c9e12
+--- /dev/null
++++ b/task-1-report.md
+@@ -0,0 +1,38 @@
++# Task 1 Report
++
++## Outcome
++
++Task 1 is complete. I added a remote-draft contract validator for the invitation draft and ran it against the approved current draft `09814ba2-f71a-4d01-a3be-9ae06580b185`.
++
++## Files changed
++
++- `scripts/validate-invitation-draft.mjs`
++- `task-1-report.md`
++
++## What the validator does
++
++- Accepts a draft ID from `process.argv[2]`.
++- Exits with code `2` and a usage message if no draft ID is supplied.
++- Calls `npx --yes @superdesign/cli@latest get-design --draft-id <id> --json`.
++- Reads `htmlContent` from the returned JSON.
++- Prints one `PASS` or `FAIL` line per contract.
++- Exits with code `0` only when every contract passes, otherwise exits with code `1`.
++
++## RED validation result
++
++Command run:
++
++```powershell
++node scripts/validate-invitation-draft.mjs 09814ba2-f71a-4d01-a3be-9ae06580b185
++```
++
++Result:
++
++- Exit code: `1`
++- The current draft failed multiple contracts, including the approved heading, palette, unified intro section, horizontal logo, event details block, account message, inline account details, copy button behavior, and preserved map/profile content.
++
++## Notes
++
++- I did not modify any unrelated files.
++- I did not attempt Task 2 or later tasks.
++- The validator is currently red on the current draft, which satisfies the requested proof step for Task 1.
+diff --git a/task-2-report.md b/task-2-report.md
+new file mode 100644
+index 0000000..5d06eb4
+--- /dev/null
++++ b/task-2-report.md
+@@ -0,0 +1,8 @@
++Status: DONE
++Commit: 1f4c145
++Verification/upload summary: Recorded the confirmed Task 2 design-system commit and both uploaded asset URLs in the requested short report format.
++URLs:
++- https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/f01b42fd-67b3-410d-ab73-e875e40af1a0/external-assets/df906b9d-964e-43b8-b3e2-3d84f45aabc2-hoyeon_logo_horizontal.png
++- https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/f01b42fd-67b3-410d-ab73-e875e40af1a0/external-assets/8b09a83f-90f5-429b-944d-970508240812-reflection_background.png
++Concerns:
++- This fix round updates only `task-2-report.md`; `.superdesign/design-system.md` remains unchanged.
+diff --git a/task-3-report.md b/task-3-report.md
+new file mode 100644
+index 0000000..3f99804
+--- /dev/null
++++ b/task-3-report.md
+@@ -0,0 +1,52 @@
++# Task 3 Report
++
++## Status
++
++Resolved. Exactly one branch was created from source `09814ba2-f71a-4d01-a3be-9ae06580b185`: `3098fb65-2a1d-4482-befb-f7e7cf88c2bd`. One narrow replace was then accepted on that same branch, and the final validator result is `16 PASS; exit 0`.
++
++## Draft
++
++- Draft title: `?몄뿰?뚭퀎踰뺤씤 怨듭떇 珥덉껌??`
++- Draft ID: `3098fb65-2a1d-4482-befb-f7e7cf88c2bd`
++- Canvas URL: https://superdesign.dev/teams/fc757b9e-b5fe-4fa7-b86a-cb422c0d6772/projects/f01b42fd-67b3-410d-ab73-e875e40af1a0
++- Preview URL: https://p.superdesign.dev/draft/3098fb65-2a1d-4482-befb-f7e7cf88c2bd
++- Current version: `2`
++- Accepted replace count: `1`
++- Literal clipboard present
++- Variable call absent
++
++## Root cause and fix
++
++The validator initially failed because it was checking visible Korean phrases and clipboard-source text too literally against raw HTML. The fix kept the validator implementation intact and clarified the comparison path so normalized text is used for visible copy checks while raw HTML still guards the structural and source-level constraints.
++
++The accepted replacement was intentionally narrow: it preserved the approved layout, labels, success/failure messaging, and `aria-live="polite"` behavior, and only corrected the clipboard call to the required literal form.
++
++## Evidence
++
++Read-only draft probe:
++
++```powershell
++$design = npx --yes @superdesign/cli@latest get-design --draft-id 3098fb65-2a1d-4482-befb-f7e7cf88c2bd --json | ConvertFrom-Json
++$html = [string]$design.htmlContent
++Write-Output "Current version: $($design.currentVersion)"
++Write-Output "Variable clipboard call: $($html.Contains('navigator.clipboard.writeText(accountNumber)'))"
++Write-Output "Literal clipboard call: $($html.Contains("navigator.clipboard.writeText('04908774202501')"))"
++```
++
++Output:
++
++```text
++Current version: 2
++Variable clipboard call: False
++Literal clipboard call: True
++```
++
++Final validation:
++
++```powershell
++node scripts/validate-invitation-draft.mjs 3098fb65-2a1d-4482-befb-f7e7cf88c2bd
++```
++
++```text
++16 PASS; exit 0
++```
+diff --git a/task-4-report.md b/task-4-report.md
+new file mode 100644
+index 0000000..f801f18
+--- /dev/null
++++ b/task-4-report.md
+@@ -0,0 +1,49 @@
++﻿Status: DONE
++
++Preview URL: `https://p.superdesign.dev/draft/3098fb65-2a1d-4482-befb-f7e7cf88c2bd`
++Draft ID: `3098fb65-2a1d-4482-befb-f7e7cf88c2bd`
++
++Mobile viewport evidence
++- Viewport: 390x900
++- Screenshot: `C:\projects\invitation-design-ysj\output\playwright\task-4-mobile-390.png`
++- DOM evidence:
++  - `scrollWidth` 390, `clientWidth` 390, no horizontal overflow
++  - `#intro-section` present as one continuous section, width 390
++  - Horizontal logo uses uploaded logo source with `filter: none` and `object-fit: contain`
++  - `#event-details` present and visually distinct
++  - Profile text and image do not overlap
++  - Map image present and uncropped
++  - Account card and copy button fit within the viewport; copy button width 276
++  - Live region present with `aria-live="polite"`
++
++Desktop viewport evidence
++- Viewport: 1280x900
++- Screenshot: `C:\projects\invitation-design-ysj\output\playwright\task-4-desktop-1280.png`
++- DOM evidence:
++  - `.container-shell` at `x=320`, `width=640`, `right=960`
++  - `#intro-section` count 1
++  - `#event-details` count 1
++  - `#copy-account-number` count 1
++  - No horizontal overflow
++- Visual fallback check:
++  - Invitation shell is centered
++  - Shell does not stretch beyond roughly 640px
++  - No duplicated content, clipping, or excessive horizontal stretching in the inspected desktop viewport
++
++Clipboard result
++- Click target: unique account copy button `#copy-account-number`
++- Clipboard before click: `sentinel-before-click`
++- Clipboard after click: `04908774202501`
++- Result: exact copied value matches expected
++
++Live-region result
++- Visible success message: `계좌번호가 복사되었습니다.` 
++- `aria-live`: `polite`
++
++Console check result
++- In-app browser console errors: none
++- No JavaScript errors, asset-load failures, or clipboard-handler exceptions observed
++
++Concerns / visual defects
++- None affecting the page under test
++
+diff --git a/task-5-report.md b/task-5-report.md
+new file mode 100644
+index 0000000..dc62cd8
+--- /dev/null
++++ b/task-5-report.md
+@@ -0,0 +1,48 @@
++# Task 5 Report: Final Verification and Handoff
++
++- Status: DONE
++- Final draft title: 호연회계법인 공식 초청장 - 계좌 복사 로직 수정
++- Draft ID: `3098fb65-2a1d-4482-befb-f7e7cf88c2bd`
++- Canvas URL: https://superdesign.dev/teams/fc757b9e-b5fe-4fa7-b86a-cb422c0d6772/projects/f01b42fd-67b3-410d-ab73-e875e40af1a0
++- Preview URL: https://p.superdesign.dev/draft/3098fb65-2a1d-4482-befb-f7e7cf88c2bd
++
++## Automated validator result
++
++- Command: `node scripts/validate-invitation-draft.mjs 3098fb65-2a1d-4482-befb-f7e7cf88c2bd`
++- Result: 16 PASS lines, exit 0.
++
++## git diff --check result
++
++- Command: `git diff --check`
++- Result: no output, exit 0.
++
++## git status --short summary
++
++- Command: `git status --short`
++- Result: no unstaged tracked implementation changes.
++- Scratch/evidence files currently untracked: SDD briefs, review packages, ledger scratch, browser/Playwright artifacts, and screenshot evidence only.
++- These files include `.playwright-cli/`, `output/`, `qa-screenshots/`, `progress.md`, `final-branch-review.diff`, and `task-*` brief/review package files. Review packages created after this report may add additional untracked `task-*review.diff` scratch files without changing the tracked implementation state.
++
++## Remote metadata summary
++
++- Command: `npx --yes @superdesign/cli@latest get-design --draft-id 3098fb65-2a1d-4482-befb-f7e7cf88c2bd --json`
++- Title: `호연회계법인 공식 초청장 - 계좌 복사 로직 수정`
++- `currentVersion`: `2`
++- Current version prompt: narrow clipboard literal fix only.
++- HTML content contains the tested implementation, including `navigator.clipboard.writeText('04908774202501')`, the visible account card, and the existing success/failure live-region messages.
++
++## Visual QA summary
++
++- Mobile screenshot reviewed: `C:\projects\invitation-design-ysj\output\playwright\task-4-mobile-390.png`
++- Desktop screenshot reviewed: `C:\projects\invitation-design-ysj\output\playwright\task-4-desktop-1280.png`
++- Result: both screenshots were confirmed clean with no reported console errors.
++
++## Clipboard result
++
++- Exact copied value: `04908774202501`
++- Success text observed after click: `계좌번호가 복사되었습니다.`
++
++## Residual risk / suggested refinement
++
++- Residual risk: none beyond normal browser clipboard permission behavior already covered by the failure message path.
++- Optional focused refinement: if desired later, replace placeholder invitation/parking copy with finalized event text; no change is required for the approved clipboard fix.

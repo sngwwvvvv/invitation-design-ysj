@@ -1,0 +1,4 @@
+[    1229ms] [WARNING] cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation @ https://cdn.tailwindcss.com/:63
+[    1588ms] [LOG] [SuperDesign] Preview loaded for versionId: 3098fb65-2a1d-4482-befb-f7e7cf88c2bd @ https://p.superdesign.dev/draft/3098fb65-2a1d-4482-befb-f7e7cf88c2bd:99
+[    1645ms] [LOG] [SDComponent] Runtime initialized @ https://p.superdesign.dev/draft/3098fb65-2a1d-4482-befb-f7e7cf88c2bd:751
+[    1892ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://p.superdesign.dev/favicon.ico:0

@@ -1,0 +1,37 @@
+﻿# Re-review package: ebb290e..e244bec
+
+## Commits
+e244bec docs: refresh final verification status inventory
+
+## Files changed
+ task-5-report.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+## Diff
+diff --git a/task-5-report.md b/task-5-report.md
+index 0d2da3b..1857449 100644
+--- a/task-5-report.md
++++ b/task-5-report.md
+@@ -33,21 +33,21 @@
+   - `task-2-review-fixed.diff`
+   - `task-2-review-round2.diff`
+   - `task-2-review.diff`
+   - `task-3-brief.md`
+   - `task-3-review-final.diff`
+   - `task-3-review.diff`
+   - `task-4-brief.md`
+   - `task-4-rereview.diff`
+   - `task-4-review.diff`
+   - `task-5-brief.md`
+-  - `task-5-report.md`
++  - `task-5-review.diff`
+ 
+ ## Remote metadata summary
+ 
+ - Command: `npx --yes @superdesign/cli@latest get-design --draft-id 3098fb65-2a1d-4482-befb-f7e7cf88c2bd --json`
+ - Title: `호연회계법인 공식 초청장 - 계좌 복사 로직 수정`
+ - `currentVersion`: `2`
+ - Current version prompt: narrow clipboard literal fix only.
+ - HTML content contains the tested implementation, including `navigator.clipboard.writeText('04908774202501')`, the visible account card, and the existing success/failure live-region messages.
+ 
+ ## Visual QA summary
