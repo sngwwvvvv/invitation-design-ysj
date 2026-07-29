@@ -5,7 +5,7 @@ Draft ID: `3098fb65-2a1d-4482-befb-f7e7cf88c2bd`
 
 Mobile viewport evidence
 - Viewport: 390x900
-- Screenshot: `C:\projects\invitation-design-ysj\qa-screenshots\task-4-mobile-390.png`
+- Screenshot: `C:\projects\invitation-design-ysj\output\playwright\task-4-mobile-390.png`
 - DOM evidence:
   - `scrollWidth` 390, `clientWidth` 390, no horizontal overflow
   - `#intro-section` present as one continuous section, width 390
