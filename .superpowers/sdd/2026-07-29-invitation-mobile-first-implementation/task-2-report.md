@@ -20,3 +20,8 @@ Review fix round:
 - Removed obsolete validator-only mojibake markup; the local validator continues to pass.
 - Verification: `node scripts/validate-invitation-local.mjs index.html styles.css` (12/12 PASS); `git diff --check` (PASS).
 - Fix commit: `978115e0fe3ce835b0a51c6d6261ac1c38a02a9a` (`fix: correct invitation review details`).
+
+Review fix round 2:
+- Updated the event date placeholder to `202X년 X월 X일(X) 오후 X시`.
+- Verification: `node scripts/validate-invitation-local.mjs index.html styles.css` (12/12 PASS); `git diff --check` (PASS).
+- Fix commit: `a37471a5c623c3712b2aa4e035eb368c776a0b1c` (`fix: align event date placeholder`).
