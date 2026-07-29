@@ -10,9 +10,9 @@
 
 ## 정보 구조
 
-1. 하나의 통합 도입부: 가로형 로고, `호연회계법인에서의 새로운 출발을 알려드립니다`, 초청 인사말 placeholder, 별도 일시·장소 강조 블록
+1. 하나의 통합 도입부: 가로형 로고, `호연회계법인에서의 새로운 출발을 알려드립니다`, 승인된 초청 인사말, 별도 일시·장소 강조 블록
 2. 경력사항 소개: 왼쪽 인물 사진, 오른쪽 윤성중 부대표 이름과 주요 경력
-3. 오시는 길: 정적 지도 캡처, 주소, 2호선 삼성역 도보 안내, 큰 네이버 지도 확인 버튼, 주차 안내 placeholder
+3. 오시는 길: 정적 지도 캡처, 주소, 2호선 삼성역 도보 안내, 큰 네이버 지도 확인 버튼, 승인된 주차 안내 문구
 4. 별도 제목 없는 계좌 안내: 안내 문구, 우리은행 계좌 정보, 계좌번호 복사 버튼
 
 ## 시각 방향
@@ -76,8 +76,8 @@
 
 ## 구성 요소
 
-- `InvitationIntro`: `id="intro-section"`을 사용한다. 가로형 로고, `호연회계법인에서의 새로운 출발을 알려드립니다`, 초청 인사말 placeholder, `id="event-details"`인 별도 일시·장소 강조 블록을 하나의 연속된 섹션 안에 배치한다.
-- `ProfileSection`: 경력사항 소개 제목, 왼쪽 인물 사진, 오른쪽 이름·주요 경력 목록.
+- `InvitationIntro`: `id="intro-section"`을 사용한다. 가로형 로고, `호연회계법인에서의 새로운 출발을 알려드립니다`, 승인된 초청 인사말, `id="event-details"`인 별도 일시·장소 강조 블록을 하나의 연속된 섹션 안에 배치한다.
+- `ProfileSection`: 경력사항 소개 제목, 승인된 인물 사진, 오른쪽 이름·주요 경력 10개 항목을 유지한다.
 - `MapSection`: 정적 지도 캡처, 주소, 2호선 삼성역 도보 안내, 네이버 지도 장소 확인 버튼, 주차 안내, 이미지 로딩 실패 안내.
 - `AccountNotice`: 별도 `h2` 없이 `축하의 마음을 전하고자 하시는 분들을 위해 계좌 정보를 조심스럽게 안내드립니다.` 문구와 우리은행·`049-087742-02-501`·윤성중 정보를 같은 페이지에 항상 표시한다. `id="copy-account-number"` 버튼과 `aria-live="polite"` 상태 영역을 포함한다.
 
@@ -88,7 +88,7 @@
 - 주소 바로 아래에 2호선 아이콘과 `2호선 삼성역 5번출구에서 도보 약 10분` 문구를 한 줄로 표시한다.
 - 네이버 지도 확인 버튼은 길찾기 메뉴가 아니라 `서울특별시 강남구 테헤란로81길 14` 주소 검색 결과와 장소 정보가 바로 보이는 URL을 연다.
 - 지도 이미지 로딩 실패 시에도 주소, 대중교통 안내와 네이버 지도 확인 버튼은 그대로 사용할 수 있어야 한다.
-- `[일시 및 장소]` 레이블은 표시하지 않는다. 기존 날짜 placeholder와 주소는 `event-details` 안에서 달력·지도 핀 아이콘과 함께 강조한다.
+- `[일시 및 장소]` 레이블은 표시하지 않는다. 승인된 일시 문구와 주소는 `event-details` 안에서 달력·지도 핀 아이콘과 함께 강조한다.
 - `축하의 말씀` 제목, `마음 전하실 곳 확인하기` 버튼, 계좌 모달과 관련 열기·닫기 JavaScript는 사용하지 않는다.
 - `계좌정보 복사` 버튼은 `navigator.clipboard.writeText('04908774202501')`로 계좌번호만 하이픈 없이 복사한다.
 - 복사 성공 시 `계좌번호가 복사되었습니다.`를, 실패 시 `계좌번호를 길게 눌러 복사해 주세요.`를 라이브 영역에 표시한다.
@@ -104,4 +104,4 @@
 
 ## Superdesign 생성 제약
 
-Use ONLY the fonts, colors, spacing, and component styles defined in this design system. Do not introduce any fonts, colors, gradients, shadows, decorative patterns, or visual styles not in the design system. Use one fixed mobile-width single-column page shell on every viewport with no media queries. Build one continuous InvitationIntro with the uploaded horizontal logo in its original colors, the unchanged main heading, the invitation placeholder, and a separate event-details block over the uploaded reflection background at 40% background-layer opacity. In ProfileSection, keep the approved two-column B layout: uncropped bottom-aligned portrait on the left and name plus all ten career entries on the right, with both bottoms aligned. Do not show contact, education, or certification lines. In MapSection, preserve the provided static map capture at its original aspect ratio, the Line 2 icon and walking guidance, the exact address, the Naver Map URL, and the parking placeholder; never render an iframe, API map, or directions form. Remove the celebration h2 and all account-modal UI. Show the approved account notice and account data inline with a working digits-only clipboard button and accessible success/failure status.
+Use ONLY the fonts, colors, spacing, and component styles defined in this design system. Do not introduce any fonts, colors, gradients, shadows, decorative patterns, or visual styles not in the design system. Use one fixed mobile-width single-column page shell on every viewport with no media queries. Build one continuous InvitationIntro with the uploaded horizontal logo in its original colors, the unchanged main heading, the approved invitation message, and a separate event-details block over the uploaded reflection background at 40% background-layer opacity. In ProfileSection, keep the approved two-column B layout: uncropped bottom-aligned portrait on the left and name plus all ten career entries on the right, with both bottoms aligned. Do not show contact, education, or certification lines. In MapSection, preserve the provided static map capture at its original aspect ratio, the Line 2 icon and walking guidance, the exact address, the Naver Map URL, and the approved parking notice; never render an iframe, API map, or directions form. Remove the celebration h2 and all account-modal UI. Show the approved account notice and account data inline with a working digits-only clipboard button and accessible success/failure status.
