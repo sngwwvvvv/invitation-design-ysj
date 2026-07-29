@@ -25,6 +25,13 @@ const text = html
 
 const approvedColors = ["#0A2D54", "#0063A6", "#43A64E", "#F0F4F8", "#64748B"];
 const oldPalette = ["#142755", "#A9AABC", "#35B84A", "#F6F4EF"];
+const introIndex = html.indexOf('id="intro-section"');
+const eventIndex = html.indexOf('id="event-details"');
+const invitationHtmlIndex = html.indexOf("[초청 인사말이 이곳에 들어갑니다]");
+const accountCardIndex = html.indexOf('id="account-card"');
+const accountDividerIndex = html.indexOf('id="account-divider"');
+const copyButtonIndex = html.indexOf('id="copy-account-number"');
+const accountNotice = "축하의 마음을 전하고자 하시는 분들을 위해 계좌 정보를 조심스럽게 안내드립니다.";
 
 const checks = [
   ["keeps the approved main heading", text.includes("호연회계법인에서의 새로운 출발을 알려드립니다")],
@@ -42,6 +49,25 @@ const checks = [
   ],
   ["removes the date and place label", !text.includes("[일시 및 장소]")],
   ["uses a dedicated event details block", /id=["']event-details["']/.test(html)],
+  [
+    "declares a 640px canonical scaled shell",
+    /id=["']invitation-scale-frame["']/.test(html) &&
+      /id=["']invitation-canvas["']/.test(html) &&
+      /\.invitation-canvas\s*\{[\s\S]*?width\s*:\s*640px/i.test(html) &&
+      /transform-origin\s*:\s*top\s+left/i.test(html) &&
+      /syncInvitationScale/.test(html) &&
+      /Math\.min\s*\(\s*1\s*,\s*window\.innerWidth\s*\/\s*640\s*\)/.test(html) &&
+      /ResizeObserver\s*\(\s*syncInvitationScale\s*\)/.test(html),
+  ],
+  [
+    "orders event details before the invitation message",
+    introIndex >= 0 && eventIndex > introIndex && invitationHtmlIndex > eventIndex,
+  ],
+  [
+    "keeps the intro background inside the scaled intro section",
+    introIndex >= 0 &&
+      /id=["']intro-section["'][\s\S]{0,1800}(?:intro-bg|reflection_background)/i.test(html),
+  ],
   ["removes the celebration heading", !text.includes("축하의 말씀")],
   [
     "shows the chosen account copy message",
@@ -52,6 +78,19 @@ const checks = [
     ["우리은행", "049-087742-02-501", "윤성중"].every((value) => text.includes(value)),
   ],
   ["removes modal behavior", !/(account-modal|openModal|closeModal|modal-backdrop)/i.test(html)],
+  [
+    "places the notice and divider inside the account card",
+    accountCardIndex > -1 &&
+      text.includes(accountNotice) &&
+      accountDividerIndex > accountCardIndex &&
+      copyButtonIndex > accountDividerIndex,
+  ],
+  [
+    "shows exact account labels and values",
+    ["은행", "우리은행", "계좌번호", "049-087742-02-501", "예금주", "윤성중"].every((value) =>
+      text.includes(value),
+    ),
+  ],
   [
     "exposes the account copy button",
     /id=["']copy-account-number["']/.test(html) && text.includes("계좌정보 복사"),

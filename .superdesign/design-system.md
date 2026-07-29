@@ -105,3 +105,56 @@
 ## Superdesign 생성 제약
 
 Use ONLY the fonts, colors, spacing, and component styles defined in this design system. Do not introduce any fonts, colors, gradients, shadows, decorative patterns, or visual styles not in the design system. Use one fixed mobile-width single-column page shell on every viewport with no media queries. Build one continuous InvitationIntro with the uploaded horizontal logo in its original colors, the unchanged main heading, the approved invitation message, and a separate event-details block over the uploaded reflection background at 40% background-layer opacity. In ProfileSection, keep the approved two-column B layout: uncropped bottom-aligned portrait on the left and name plus all ten career entries on the right, with both bottoms aligned. Do not show contact, education, or certification lines. In MapSection, preserve the provided static map capture at its original aspect ratio, the Line 2 icon and walking guidance, the exact address, the Naver Map URL, and the approved parking notice; never render an iframe, API map, or directions form. Remove the celebration h2 and all account-modal UI. Show the approved account notice and account data inline with a working digits-only clipboard button and accessible success/failure status.
+
+## 640px canonical canvas
+
+The invitation must be authored once at a canonical visual width of exactly `640px`. At viewport widths below 640px, scale the complete canvas as one unit so 360px, 430px, and 640px keep the same line breaks, line counts, information placement, and background framing.
+
+Use this DOM model:
+
+```html
+<div class="invitation-stage">
+  <div id="invitation-scale-frame" class="invitation-scale-frame">
+    <main id="invitation-canvas" class="invitation-canvas">
+      <!-- all existing invitation sections, including #intro-section and #account-card -->
+    </main>
+  </div>
+</div>
+```
+
+Use this CSS model:
+
+```css
+.invitation-stage { display: flex; justify-content: center; width: 100%; }
+.invitation-scale-frame { width: min(640px, 100vw); overflow: clip; }
+.invitation-canvas {
+  width: 640px;
+  transform-origin: top left;
+  will-change: transform;
+}
+```
+
+Use this JavaScript model:
+
+```js
+const frame = document.getElementById('invitation-scale-frame');
+const canvas = document.getElementById('invitation-canvas');
+const syncInvitationScale = () => {
+  const scale = Math.min(1, window.innerWidth / 640);
+  canvas.style.transform = `scale(${scale})`;
+  frame.style.height = `${canvas.scrollHeight * scale}px`;
+};
+new ResizeObserver(syncInvitationScale).observe(canvas);
+window.addEventListener('resize', syncInvitationScale, { passive: true });
+syncInvitationScale();
+```
+
+Follow these constraints:
+
+- Wrap all visible invitation content in `#invitation-scale-frame` and `#invitation-canvas`.
+- `#invitation-canvas` has `width: 640px`; below 640px it is transformed from `top left` by `window.innerWidth / 640`.
+- The frame reserves the transformed visual height so the document flow has no overlap or blank gap.
+- Do not change a child font size, child width, spacing, or wrapping rule at narrower widths.
+- Put `#intro-section` and its `.intro-bg` inside `.invitation-canvas`; preserve the full section background when scaled.
+- In `#intro-section`, keep the horizontal logo first, then the exact existing main heading, then `#event-details`, then the exact invitation placeholder.
+- Put the exact account notice, `#account-divider`, account labels, values, copy button, and live region inside `#account-card`.
