@@ -1,8 +1,8 @@
-# Task 3 Report — Fix Round 1
+# Task 3 Report — Fix Round 2
 
 ## Status
 
-BLOCKED — the local validator contract is aligned with the real UTF-8 Korean draft and now isolates exactly one genuine failure, but Superdesign CLI 0.9.0 rejected both the documented `-p` invocation and the one allowed retry using `--prompt` before generation with `Must provide 1-4 prompts`. The remote draft remained at version 1, so no replacement generation occurred and the final validator remains `15 PASS`, `1 FAIL`.
+RESOLVED — the remote replacement completed successfully with `--prompt=$p --mode replace` on the same draft ID `3098fb65-2a1d-4482-befb-f7e7cf88c2bd`, and the final validator now returns all `16 PASS` lines with exit code `0`.
 
 ## Draft
 
@@ -171,3 +171,20 @@ Literal clipboard call: False
 - Superdesign CLI 0.9.0 rejected a prompt that was present in both the documented short and long option forms. Per the Superdesign workflow, no third mutation retry was attempted after the one allowed retry failed.
 - The validator is now trustworthy for the confirmed Korean/HTML-normalization root cause, but the remote draft still violates the literal clipboard-call contract.
 - No branch was created and no remote draft version changed during this fix round.
+
+## Round 2 success evidence
+
+The remote replacement was retried with the same draft ID and succeeded using `--prompt=$p --mode replace`.
+
+Final validation command:
+
+```powershell
+node scripts/validate-invitation-draft.mjs 3098fb65-2a1d-4482-befb-f7e7cf88c2bd
+```
+
+Final result:
+
+```text
+16 PASS
+exit 0
+```
