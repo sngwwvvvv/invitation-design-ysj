@@ -1,0 +1,49 @@
+﻿Status: DONE
+
+Preview URL: `https://p.superdesign.dev/draft/3098fb65-2a1d-4482-befb-f7e7cf88c2bd`
+Draft ID: `3098fb65-2a1d-4482-befb-f7e7cf88c2bd`
+
+Mobile viewport evidence
+- Viewport: 390x900
+- Screenshot: `C:\projects\invitation-design-ysj\qa-screenshots\task-4-mobile-390.png`
+- DOM evidence:
+  - `scrollWidth` 390, `clientWidth` 390, no horizontal overflow
+  - `#intro-section` present as one continuous section, width 390
+  - Horizontal logo uses uploaded logo source with `filter: none` and `object-fit: contain`
+  - `#event-details` present and visually distinct
+  - Profile text and image do not overlap
+  - Map image present and uncropped
+  - Account card and copy button fit within the viewport; copy button width 276
+  - Live region present with `aria-live="polite"`
+
+Desktop viewport evidence
+- Viewport: 1280x900
+- Screenshot: `C:\projects\invitation-design-ysj\output\playwright\task-4-desktop-1280.png`
+- DOM evidence:
+  - `.container-shell` at `x=320`, `width=640`, `right=960`
+  - `#intro-section` count 1
+  - `#event-details` count 1
+  - `#copy-account-number` count 1
+  - No horizontal overflow
+- Visual fallback check:
+  - Invitation shell is centered
+  - Shell does not stretch beyond roughly 640px
+  - No duplicated content, clipping, or excessive horizontal stretching in the inspected desktop viewport
+
+Clipboard result
+- Click target: unique account copy button `#copy-account-number`
+- Clipboard before click: `sentinel-before-click`
+- Clipboard after click: `04908774202501`
+- Result: exact copied value matches expected
+
+Live-region result
+- Visible success message: `계좌번호가 복사되었습니다.` 
+- `aria-live`: `polite`
+
+Console check result
+- In-app browser console errors: none
+- No JavaScript errors, asset-load failures, or clipboard-handler exceptions observed
+
+Concerns / visual defects
+- None affecting the page under test
+
