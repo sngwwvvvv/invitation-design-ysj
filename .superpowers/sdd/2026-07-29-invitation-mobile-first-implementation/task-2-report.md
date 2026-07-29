@@ -13,3 +13,10 @@ Implementation commit: `742993c9e5700d98fe03ea2c222a9ce0daa3f641` (`feat: build 
 
 Remaining risks:
 - Event date/time and parking details remain intentionally provisional content and should be confirmed before publication.
+
+Review fix round:
+- Restored the approved ten-item career history, exact venue and placeholder text, and the location-pin / decorative metro-icon accessibility treatment.
+- Raised normal copy contrast to Deep Navy, increased career text to 1rem, and changed the focus outline to Standard Blue.
+- Removed obsolete validator-only mojibake markup; the local validator continues to pass.
+- Verification: `node scripts/validate-invitation-local.mjs index.html styles.css` (12/12 PASS); `git diff --check` (PASS).
+- Fix commit: `978115e0fe3ce835b0a51c6d6261ac1c38a02a9a` (`fix: correct invitation review details`).
