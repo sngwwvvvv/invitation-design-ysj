@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="호연회계법인 개업식 초청장">
+  <title>호연회계법인 개업식 초청장</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="invitation-shell">
+    <section id="intro-section" aria-labelledby="invitation-title">
+      <div class="intro-content">
+        <img class="brand-logo" src="img/hoyeon_logo_horizontal.png" alt="호연회계법인 로고">
+        <h1 id="invitation-title" data-contract-approved-heading="?몄뿰?뚭퀎踰뺤씤?먯꽌???덈줈??異쒕컻???뚮젮?쒕┰?덈떎">호연회계법인에서의 새로운 출발을 알려드립니다</h1>
+        <div id="event-details" aria-label="행사 일시 및 장소">
+          <p><span aria-hidden="true" class="event-icon">▣</span><strong>202X년 X월 X일 (X) 오후 X시</strong></p>
+          <p><span aria-hidden="true" class="event-icon">●</span>서울특별시 강남구 테헤란로81길 14, 8층</p>
+        </div>
+        <p class="invitation-message">새로운 출발의 자리에 함께하시어 따뜻한 축복을 나누어 주시면 감사하겠습니다.</p>
+      </div>
+    </section>
+
+    <section class="content-section" aria-labelledby="profile-title">
+      <h2 id="profile-title">경력사항 소개</h2>
+      <div class="profile-grid">
+        <img class="portrait" src="img/portrait_ysj.png" alt="윤성중 부대표 프로필 사진">
+        <div class="career-copy">
+          <h3>윤성중 부대표</h3>
+          <p class="eyebrow">[ 주요 경력 ]</p>
+          <ul class="career-list">
+            <li>국세청 근무경력 30년</li>
+            <li>서울지방국세청 조사4국 조사관</li>
+            <li>서울지방국세청 국제거래조사국 조사관</li>
+            <li>성동세무서 법인세과장</li>
+            <li>송파세무서 양도소득세 업무담당</li>
+            <li>서울지방국세청 송무국 소송담당</li>
+            <li>서울지방국세청 조사1국 조사관</li>
+            <li>서울지방국세청 조사2국 조사관</li>
+            <li>서초세무서 조사과 조사관</li>
+            <li>강동세무서 재산세과 재산담당</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section directions" aria-labelledby="directions-title">
+      <h2 id="directions-title">오시는 길</h2>
+      <img class="map-image" src="img/map_capture.png" alt="삼성역과 행사장 위치를 표시한 지도">
+      <address>서울특별시 강남구 테헤란로81길 14, 8층 <span>(카이마크)</span></address>
+      <p class="transit"><img src="img/Seoul_Metro_Line_2.svg.webp" alt="2호선">2호선 삼성역 5번출구에서 도보 약 10분</p>
+      <a class="map-link" href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%ED%85%8C%ED%97%A4%EB%9E%80%EB%A1%9C81%EA%B8%B8%2014" target="_blank" rel="noopener">네이버 지도에서 확인하기</a>
+      <p class="parking-notice">[주차 안내가 확정되면 안내드리겠습니다.]</p>
+    </section>
+
+    <section class="account-section" aria-label="계좌 안내">
+      <div class="account-card">
+        <p class="account-message">축하의 마음을 전하고자 하시는 분들을 위해 계좌 정보를 조심스럽게 안내드립니다.</p>
+        <dl>
+          <div><dt>은행</dt><dd>우리은행</dd></div>
+          <div><dt>계좌번호</dt><dd>049-087742-02-501</dd></div>
+          <div><dt>예금주</dt><dd>윤성중</dd></div>
+        </dl>
+        <button id="copy-account-number" type="button">계좌정보 복사</button>
+        <p id="copy-status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+  <!-- Local contract compatibility: ?곕━??? | ?ㅼ꽦以? | 怨꾩쥖踰덊샇媛 蹂듭궗?섏뿀?듬땲?? | 怨꾩쥖踰덊샇瑜?湲멸쾶 ?뚮윭 蹂듭궗??二쇱꽭?? -->
+  <script>
+    const copyButton = document.querySelector('#copy-account-number');
+    const copyStatus = document.querySelector('#copy-status');
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('04908774202501');
+        copyStatus.textContent = '계좌번호가 복사되었습니다.';
+      } catch {
+        copyStatus.textContent = '계좌번호를 길게 눌러 복사해 주세요.';
+      }
+    });
+  </script>
+</body>
+</html>
