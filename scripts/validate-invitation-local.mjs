@@ -21,7 +21,7 @@ const approvedCareerEntries = [
   "전 서초세무서 조사과 조사팀장",
   "전 강동세무서 재산세과 재산팀장",
 ];
-const careerList = html.match(/<ul\b(?=[^>]*\bclass=["'][^"']*\bcareer-list\b[^"']*["'])[^>]*>([\s\S]*?)<\/ul>/i)?.[1];
+const careerList = html.match(/<ul\b(?=[^>]*\bclass=["'](?:[^\s"']+\s+)*career-list(?:\s+[^\s"']+)*["'])[^>]*>([\s\S]*?)<\/ul>/i)?.[1];
 const careerEntries = careerList
   ? [...careerList.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi)].map(([, entry]) => entry.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim())
   : [];
