@@ -62,8 +62,9 @@ h3 { margin-bottom: 4px; color: var(--navy); font-size: 1.125rem; }
 .portrait { object-fit: contain; }
 .eyebrow { margin-bottom: 8px; color: var(--blue); font-weight: 700; }
 .career-list { margin: 0; padding-left: 18px; font-size: .9375rem; line-height: 1.7; }
-.directions { position: relative; background: var(--platinum); color: var(--navy); }
-.directions::before {
+.directions, .account-section { position: relative; }
+.directions { background: var(--platinum); color: var(--navy); }
+.directions::before, .account-section::before {
   position: absolute;
   top: 0;
   right: 40px;
@@ -103,7 +104,7 @@ address { margin-bottom: 16px; font-size: 1rem; font-style: normal; }
   }
   .content-section, .account-section { padding: 44px 24px; }
   .profile-section { padding-top: 32px; }
-  .directions::before { right: 24px; left: 24px; }
+  .directions::before, .account-section::before { right: 24px; left: 24px; }
   .profile-heading { margin-right: -24px; margin-bottom: 24px; margin-left: -24px; padding: 9px 24px; }
   .profile-grid { grid-template-columns: 1fr; gap: 20px; }
   .portrait { width: min(180px, 100%); margin: 0 auto; }
