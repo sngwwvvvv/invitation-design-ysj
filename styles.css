@@ -51,11 +51,11 @@ address { margin-bottom: 16px; font-size: 1rem; font-style: normal; }
 .parking-notice { margin: 18px 0 0; padding: 14px; background: var(--navy); color: var(--platinum); font-size: .875rem; text-align: center; }
 .account-section { background: var(--platinum); }
 .account-card { padding: 28px 20px; border: 1px solid var(--blue); border-radius: 16px; background: var(--platinum); }
-.account-message { margin-bottom: 0; }
+.account-message { margin-bottom: 0; text-align: center; color: var(--navy); font-size: 1.1rem; }
 .account-card dl { margin: 24px 0; padding-top: 20px; border-top: 1px solid var(--blue); }
 .account-card dl > div { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; }
 .account-card dd { margin: 0; font-weight: 700; }
-.account-card dl > div:nth-child(2) dd { color: var(--navy); font-size: 1.35rem; }
+.account-card dl > div:nth-child(2) dd { color: var(--navy); font-size: 1.15rem; }
 #copy-account-number { width: 100%; border: 0; background: var(--navy); color: var(--platinum); cursor: pointer; }
 #copy-status { min-height: 1.7em; margin: 12px 0 0; color: var(--navy); text-align: center; }
 .map-link:focus-visible { outline: 3px solid var(--navy); outline-offset: -3px; }
