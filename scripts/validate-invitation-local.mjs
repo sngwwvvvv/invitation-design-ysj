@@ -40,7 +40,7 @@ const checks = [
   ["compact visual type scale", /font-family\s*:[^;]*(Pretendard|Noto Sans KR)/i.test(css) && /h1\s*\{[\s\S]*?font-size\s*:\s*clamp\(1\.5rem,\s*5vw,\s*2rem\)/i.test(css)],
   ["event information is one capsule", /class=["'][^"']*event-pill/.test(html) && /\.event-pill\s*\{[\s\S]*?border-radius\s*:\s*999px/i.test(css)],
   ["profile uses a named section band", /class=["'][^"']*profile-heading/.test(html) && /\.profile-heading\s*\{/i.test(css)],
-  ["directions use a slate panel", /\.directions\s*\{[\s\S]*?background\s*:\s*var\(--slate\)/i.test(css) && /\.directions\s+h2\s*\{[\s\S]*?color\s*:\s*(?:var\(--platinum\)|#fff)/i.test(css)],
+  ["directions and account use platinum panels", /\.directions\s*\{[^}]*\bbackground\s*:\s*var\(--platinum\)/i.test(css) && /\.directions\s*\{[^}]*\bcolor\s*:\s*var\(--navy\)/i.test(css) && /\.directions\s+h2\s*\{[^}]*\bcolor\s*:\s*var\(--navy\)/i.test(css) && /\.account-section\s*\{[^}]*\bbackground\s*:\s*var\(--platinum\)/i.test(css) && /\.account-section\s*\{[^}]*\bcolor\s*:\s*var\(--navy\)/i.test(css) && /\.account-card\s*\{[^}]*\bbackground\s*:\s*var\(--platinum\)/i.test(css) && /\.map-link\s*\{[^}]*\bbackground\s*:\s*var\(--green\)/i.test(css) && /\.parking-notice\s*\{[^}]*\bbackground\s*:\s*var\(--navy\)/i.test(css) && /#copy-account-number\s*\{[^}]*\bbackground\s*:\s*var\(--navy\)/i.test(css)],
   ["valid event-details nesting", !/<p>[^<]*<span[^>]*>[^<]*<\/span><strong>[\s\S]*?<\/p><\/strong>/i.test(html)],
 ];
 

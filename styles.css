@@ -40,8 +40,8 @@ h3 { margin-bottom: 4px; color: var(--navy); font-size: 1.125rem; }
 .portrait { object-fit: contain; }
 .eyebrow { margin-bottom: 8px; color: var(--blue); font-weight: 700; }
 .career-list { margin: 0; padding-left: 18px; font-size: .9375rem; line-height: 1.7; }
-.directions { background: var(--slate); color: var(--platinum); }
-.directions h2 { color: var(--platinum); font-size: 1.75rem; text-align: center; }
+.directions { background: var(--platinum); color: var(--navy); }
+.directions h2 { color: var(--navy); font-size: 1.75rem; text-align: center; }
 .map-image { margin-bottom: 20px; border: 0; }
 address { margin-bottom: 16px; font-size: 1rem; font-style: normal; }
 .transit { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-size: 1rem; }
@@ -49,15 +49,15 @@ address { margin-bottom: 16px; font-size: 1rem; font-style: normal; }
 .map-link, #copy-account-number { display: flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 8px; font-size: 1.0625rem; font-weight: 700; }
 .map-link { background: var(--green); color: var(--platinum); text-decoration: none; }
 .parking-notice { margin: 18px 0 0; padding: 14px; background: var(--navy); color: var(--platinum); font-size: .875rem; text-align: center; }
-.account-section { background: var(--slate); color: #fff; }
-.account-card { padding: 28px 20px; border: 1px solid rgba(255, 255, 255, .55); border-radius: 16px; background: var(--slate); }
-.account-message { margin-bottom: 0; text-align: center; color: #fff; font-size: 1.1rem; }
-.account-card dl { margin: 24px 0; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, .55); }
+.account-section { background: var(--platinum); color: var(--navy); }
+.account-card { padding: 28px 20px; border: 1px solid var(--blue); border-radius: 16px; background: var(--platinum); }
+.account-message { margin-bottom: 0; text-align: center; color: var(--navy); font-size: 1.1rem; }
+.account-card dl { margin: 24px 0; padding-top: 20px; border-top: 1px solid var(--blue); }
 .account-card dl > div { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; }
 .account-card dd { margin: 0; font-weight: 700; }
-.account-card dl > div:nth-child(2) dd { color: #fff; font-size: 1.15rem; }
-#copy-account-number { width: 100%; border: 1px solid var(--platinum); background: var(--navy); color: var(--platinum); cursor: pointer; }
-#copy-status { min-height: 1.7em; margin: 12px 0 0; color: #fff; text-align: center; }
+.account-card dl > div:nth-child(2) dd { color: var(--navy); font-size: 1.15rem; }
+#copy-account-number { width: 100%; border: 0; background: var(--navy); color: var(--platinum); cursor: pointer; }
+#copy-status { min-height: 1.7em; margin: 12px 0 0; color: var(--navy); text-align: center; }
 .map-link:focus-visible { outline: 3px solid var(--navy); outline-offset: -3px; }
 #copy-account-number:focus-visible { outline: 3px solid var(--green); outline-offset: -3px; }
 
