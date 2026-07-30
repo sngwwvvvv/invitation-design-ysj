@@ -19,7 +19,7 @@ body {
 
 .invitation-shell { width: 100%; max-width: 640px; margin: 0 auto; overflow: hidden; background: var(--platinum); }
 #intro-section { position: relative; overflow: hidden; padding: 72px 48px 76px; background: var(--platinum); }
-#intro-section::before { position: absolute; inset: 0; background: url("img/reflection_background.png") center / cover no-repeat; content: ""; opacity: .25; }
+#intro-section::before { position: absolute; inset: 0; background: radial-gradient(circle at 50% 38%, rgba(240, 244, 248, .38) 0%, rgba(10, 45, 84, .08) 54%, rgba(10, 45, 84, .38) 100%), linear-gradient(180deg, rgba(10, 45, 84, .02) 0%, rgba(10, 45, 84, .28) 100%), url("img/reflection_background.png") center / cover no-repeat; content: ""; opacity: .38; }
 .intro-content { position: relative; z-index: 1; text-align: center; }
 .brand-logo { display: block; width: min(200px, 70%); height: auto; margin: 0 auto 28px; }
 h1, h2, h3, p { margin-top: 0; }
@@ -49,15 +49,15 @@ address { margin-bottom: 16px; font-size: 1rem; font-style: normal; }
 .map-link, #copy-account-number { display: flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 8px; font-size: 1.0625rem; font-weight: 700; }
 .map-link { background: var(--green); color: var(--platinum); text-decoration: none; }
 .parking-notice { margin: 18px 0 0; padding: 14px; background: var(--navy); color: var(--platinum); font-size: .875rem; text-align: center; }
-.account-section { background: var(--platinum); }
-.account-card { padding: 28px 20px; border: 1px solid var(--blue); border-radius: 16px; background: var(--platinum); }
-.account-message { margin-bottom: 0; text-align: center; color: var(--navy); font-size: 1.1rem; }
-.account-card dl { margin: 24px 0; padding-top: 20px; border-top: 1px solid var(--blue); }
+.account-section { background: var(--slate); color: #fff; }
+.account-card { padding: 28px 20px; border: 1px solid rgba(255, 255, 255, .55); border-radius: 16px; background: var(--slate); }
+.account-message { margin-bottom: 0; text-align: center; color: #fff; font-size: 1.1rem; }
+.account-card dl { margin: 24px 0; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, .55); }
 .account-card dl > div { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; }
 .account-card dd { margin: 0; font-weight: 700; }
-.account-card dl > div:nth-child(2) dd { color: var(--navy); font-size: 1.15rem; }
-#copy-account-number { width: 100%; border: 0; background: var(--navy); color: var(--platinum); cursor: pointer; }
-#copy-status { min-height: 1.7em; margin: 12px 0 0; color: var(--navy); text-align: center; }
+.account-card dl > div:nth-child(2) dd { color: #fff; font-size: 1.15rem; }
+#copy-account-number { width: 100%; border: 1px solid var(--platinum); background: var(--navy); color: var(--platinum); cursor: pointer; }
+#copy-status { min-height: 1.7em; margin: 12px 0 0; color: #fff; text-align: center; }
 .map-link:focus-visible { outline: 3px solid var(--navy); outline-offset: -3px; }
 #copy-account-number:focus-visible { outline: 3px solid var(--green); outline-offset: -3px; }
 

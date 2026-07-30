@@ -14,9 +14,9 @@ Give the intro background subtle visual depth and make the account section visua
 ## Account section
 
 - Set both `.account-section` and `.account-card` backgrounds to `var(--slate)`.
-- Change account copy and status text to `var(--platinum)`.
+- Use white account copy and status text so normal-size text meets WCAG AA contrast against slate.
 - Use a subtle translucent light border and divider so the card remains legible without introducing another solid background color.
-- Keep the copy-account button navy for clear action contrast; retain its green focus-visible outline.
+- Keep the copy-account button navy for clear action contrast; add a platinum boundary and retain its green focus-visible outline.
 
 ## Scope and validation
 
