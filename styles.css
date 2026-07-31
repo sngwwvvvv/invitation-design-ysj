@@ -55,7 +55,7 @@ h3 { margin-bottom: 4px; color: var(--navy); font-size: 1.125rem; font-weight: 8
 .invitation-copy { text-align: left; }
 .invitation-copy p { margin: 0 0 20px; }
 .invitation-copy p:last-child { margin-bottom: 0; }
-.invitation-signature { margin: 26px 0 0; color: var(--navy); font-size: calc(.9375rem + 2px); line-height: 1.8; text-align: right; }
+.invitation-signature { margin: 26px 0 0; color: var(--navy); font-size: calc(.9375rem); line-height: 1.8; text-align: right; }
 .invitation-signature span { display: block; }
 .content-section, .account-section { padding: 56px 40px; }
 .content-section { background: var(--platinum); }
