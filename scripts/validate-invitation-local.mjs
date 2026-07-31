@@ -31,6 +31,24 @@ const careerEntries = [...html.matchAll(/<ul\b[^>]*class=["']career-list["'][^>]
   .map(([, entry]) => entry.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim());
 
 const checks = [
+  ["invitation message has a semantic id", /id=["']invitation-message["']/i.test(html)],
+  ["removes invitation placeholder", !html.includes("[초청 인사말이 이곳에 들어갑니다]")],
+  [
+    "includes the approved invitation copy",
+    [
+      "안녕하세요.",
+      "오랜 공직생활을 마치고",
+      "호연회계법인에서 세무사로 새로운 출발을 하게 되었습니다.",
+      "납세자에게 진정으로 도움이 되는 사람으로 하루하루 살아가려 합니다.",
+      "2026년 8월",
+      "호연회계법인 부대표",
+      "세무사 윤성중 드림",
+    ].every((value) => html.includes(value)),
+  ],
+  ["preserves invitation manual line breaks", (html.match(/class=["']invitation-copy["'][\s\S]*?<\/p>/i)?.[0].match(/<br\b/gi) ?? []).length >= 8],
+  ["aligns invitation copy to the left", /\.invitation-copy\s*\{[^}]*text-align\s*:\s*left/i.test(css)],
+  ["aligns invitation signature to the right", /\.invitation-signature\s*\{[^}]*text-align\s*:\s*right/i.test(css)],
+  ["uses a readable invitation panel", /\.invitation-message\s*\{[^}]*background\s*:/i.test(css) && /\.invitation-message\s*\{[^}]*color\s*:/i.test(css)],
   ["Korean document language", /<html[^>]+lang=["']ko["']/i.test(html)],
   ["stylesheet link", /<link\b(?=[^>]*\brel=["']stylesheet["'])(?=[^>]*\bhref=["']styles\.css["'])[^>]*>/i.test(html)],
   ["invitation has one primary heading", /<h1\b[^>]*id=["']invitation-title["'][^>]*>[\s\S]*?<\/h1>/i.test(html)],
