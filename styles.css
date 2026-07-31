@@ -78,9 +78,13 @@ h3 { margin-bottom: 4px; color: var(--navy); font-size: 1.125rem; }
 address { margin-bottom: 16px; font-size: 1rem; font-style: normal; }
 .transit { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-size: 1rem; }
 .transit img { width: 1.5rem; height: auto; }
-.map-link, #copy-account-number { display: flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 8px; font-size: 1.0625rem; font-weight: 700; }
+.map-link, .parking-link, #copy-account-number { display: flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 8px; font-size: 1.0625rem; font-weight: 700; }
 .map-link { background: var(--green); color: var(--platinum); text-decoration: none; }
-.parking-notice { margin: 18px 0 0; padding: 14px; background: var(--navy); color: var(--platinum); font-size: .875rem; text-align: center; }
+.parking-notice { margin: 18px 0 0; padding: 18px 14px; background: var(--navy); color: var(--platinum); text-align: center; }
+.parking-warning, .parking-detail { margin: 0; }
+.parking-warning { font-size: 1rem; }
+.parking-detail { margin-top: 8px; font-size: .875rem; line-height: 1.6; }
+.parking-link { margin-top: 14px; background: var(--platinum); color: var(--navy); text-decoration: none; }
 .account-section { background: var(--platinum); color: var(--navy); }
 .account-card { padding: 28px 20px; border: 1px solid var(--blue); border-radius: 16px; background: var(--platinum); }
 .account-message { margin-bottom: 0; text-align: center; color: var(--navy); font-size: 1.1rem; }
@@ -91,6 +95,7 @@ address { margin-bottom: 16px; font-size: 1rem; font-style: normal; }
 #copy-account-number { width: 100%; border: 0; background: var(--navy); color: var(--platinum); cursor: pointer; }
 #copy-status { min-height: 1.7em; margin: 12px 0 0; color: var(--navy); text-align: center; }
 .map-link:focus-visible { outline: 3px solid var(--navy); outline-offset: -3px; }
+.parking-link:focus-visible { outline: 3px solid var(--green); outline-offset: -3px; }
 #copy-account-number:focus-visible { outline: 3px solid var(--green); outline-offset: -3px; }
 
 @media (max-width: 480px) {
