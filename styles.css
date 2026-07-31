@@ -13,7 +13,7 @@ body {
   background: var(--slate);
   color: var(--navy);
   font-family: "Pretendard", "Noto Sans KR", system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.7;
 }
 
@@ -49,13 +49,13 @@ h2 { margin-bottom: 28px; font-size: 1.75rem; line-height: 1.3; }
 h3 { margin-bottom: 4px; color: var(--navy); font-size: 1.125rem; }
 #event-details { margin: 0 auto 56px; text-align: center; }
 #event-details p { margin: 0; }
-.event-pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; background: var(--slate); color: var(--platinum); font-size: .75rem; letter-spacing: -.03em; line-height: 1.4; white-space: nowrap; }
+.event-pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; background: var(--slate); color: var(--platinum); font-size: calc(.75rem + 2px); letter-spacing: -.03em; line-height: 1.4; white-space: nowrap; }
 .event-icon { color: var(--green); }
-.invitation-message { max-width: 480px; margin: 0 auto; padding: 12px 4px 8px; border: 0; background: transparent; box-shadow: none; color: var(--navy); font-size: 1rem; font-weight: 700; letter-spacing: -.01em; line-height: 2; text-align: left; text-shadow: 0 1px 0 rgba(240, 244, 248, .5); }
+.invitation-message { max-width: 480px; margin: 0 auto; padding: 12px 4px 8px; border: 0; background: transparent; box-shadow: none; color: var(--navy); font-size: calc(1rem + 2px); font-weight: 700; letter-spacing: -.01em; line-height: 2; text-align: left; text-shadow: 0 1px 0 rgba(240, 244, 248, .5); }
 .invitation-copy { text-align: left; }
 .invitation-copy p { margin: 0 0 20px; }
 .invitation-copy p:last-child { margin-bottom: 0; }
-.invitation-signature { margin: 26px 0 0; color: var(--navy); font-size: .9375rem; line-height: 1.8; text-align: right; }
+.invitation-signature { margin: 26px 0 0; color: var(--navy); font-size: calc(.9375rem + 2px); line-height: 1.8; text-align: right; }
 .invitation-signature span { display: block; }
 .content-section, .account-section { padding: 56px 40px; }
 .content-section { background: var(--platinum); }
@@ -65,7 +65,7 @@ h3 { margin-bottom: 4px; color: var(--navy); font-size: 1.125rem; }
 .portrait, .map-image { display: block; width: 100%; height: auto; }
 .portrait { object-fit: contain; }
 .eyebrow { margin-bottom: 8px; color: var(--blue); font-weight: 700; }
-.career-list { margin: 0; padding-left: 18px; font-size: .9375rem; line-height: 1.7; }
+.career-list { margin: 0; padding-left: 18px; font-size: calc(.9375rem + 2px); line-height: 1.7; }
 .directions, .account-section { position: relative; }
 .directions { background: var(--platinum); color: var(--navy); }
 .directions::before, .account-section::before {
@@ -79,23 +79,23 @@ h3 { margin-bottom: 4px; color: var(--navy); font-size: 1.125rem; }
 }
 .directions h2 { color: var(--navy); font-size: 1.75rem; text-align: center; }
 .map-image { margin-bottom: 20px; border: 0; }
-address { margin-bottom: 16px; font-size: 1rem; font-style: normal; }
-.transit { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-size: 1rem; }
+address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; }
+.transit { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-size: calc(1rem + 2px); }
 .transit img { width: 1.5rem; height: auto; }
-.map-link, .parking-link, #copy-account-number { display: flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 8px; font-size: 1.0625rem; font-weight: 700; }
+.map-link, .parking-link, #copy-account-number { display: flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 8px; font-size: calc(1.0625rem + 2px); font-weight: 700; }
 .map-link { background: var(--green); color: var(--platinum); text-decoration: none; }
 .parking-notice { margin: 18px 0 0; padding: 18px 14px; background: var(--navy); color: var(--platinum); text-align: center; }
 .parking-warning, .parking-detail { margin: 0; }
-.parking-warning { font-size: 1rem; }
-.parking-detail { margin-top: 8px; font-size: .875rem; line-height: 1.6; }
+.parking-warning { font-size: calc(1rem + 2px); }
+.parking-detail { margin-top: 8px; font-size: calc(.875rem + 2px); line-height: 1.6; }
 .parking-link { margin-top: 14px; background: var(--platinum); color: var(--navy); text-decoration: none; }
 .account-section { background: var(--platinum); color: var(--navy); }
 .account-card { padding: 28px 20px; border: 1px solid var(--blue); border-radius: 16px; background: var(--platinum); }
-.account-message { margin-bottom: 0; text-align: center; color: var(--navy); font-size: 1.1rem; }
-.account-card dl { margin: 24px 0; padding-top: 20px; border-top: 1px solid var(--blue); }
+.account-message { margin-bottom: 0; text-align: center; color: var(--navy); font-size: calc(1.1rem + 1px); }
+.account-card dl { margin: 24px 0; padding-top: 20px; border-top: 1px solid var(--blue); font-size: 14px; }
 .account-card dl > div { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; }
 .account-card dd { margin: 0; font-weight: 700; }
-.account-card dl > div:nth-child(2) dd { color: var(--navy); font-size: 1.15rem; }
+.account-card dl > div:nth-child(2) dd { color: var(--navy); font-size: calc(1.15rem + 1px); }
 #copy-account-number { width: 100%; border: 0; background: var(--navy); color: var(--platinum); cursor: pointer; }
 #copy-status { min-height: 1.7em; margin: 12px 0 0; color: var(--navy); text-align: center; }
 .map-link:focus-visible { outline: 3px solid var(--navy); outline-offset: -3px; }
@@ -117,7 +117,7 @@ address { margin-bottom: 16px; font-size: 1rem; font-style: normal; }
   .profile-heading { margin-right: -24px; margin-bottom: 24px; margin-left: -24px; padding: 9px 24px; }
   .profile-grid { grid-template-columns: 1fr; gap: 20px; }
   .portrait { width: min(180px, 100%); margin: 0 auto; }
-  .career-list { font-size: .875rem; }
-  .invitation-message { padding: 22px 20px 20px; font-size: .9375rem; }
+  .career-list { font-size: calc(.875rem + 2px); }
+  .invitation-message { padding: 22px 20px 20px; font-size: calc(.9375rem + 2px); }
   .account-card dl > div:nth-child(2) dd { flex-shrink: 0; white-space: nowrap; }
 }
