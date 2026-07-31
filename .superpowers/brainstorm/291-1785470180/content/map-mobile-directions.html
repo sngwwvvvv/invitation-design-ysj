@@ -1,0 +1,299 @@
+<style>
+  .comparison-note {
+    margin: 0 0 24px;
+    padding: 12px 14px;
+    border-left: 3px solid #0063A6;
+    background: #F0F4F8;
+    color: #0A2D54;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .map-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    gap: 18px;
+    align-items: start;
+  }
+  .map-choice {
+    overflow: hidden;
+    border: 1px solid #d8e1ea;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 8px 28px rgba(10, 45, 84, .08);
+  }
+  .map-choice.selectable {
+    cursor: pointer;
+    transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+  }
+  .map-choice.selectable:hover {
+    transform: translateY(-2px);
+    border-color: #0063A6;
+    box-shadow: 0 12px 32px rgba(10, 45, 84, .14);
+  }
+  .map-choice.selected {
+    border: 2px solid #0063A6;
+    box-shadow: 0 0 0 3px rgba(0, 99, 166, .12);
+  }
+  .phone {
+    width: 100%;
+    max-width: 296px;
+    margin: 0 auto;
+    padding: 28px 18px 24px;
+    background: #F0F4F8;
+  }
+  .phone h4 {
+    margin: 0 0 18px;
+    color: #0A2D54;
+    font-size: 20px;
+    text-align: center;
+  }
+  .baseline-map {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 0 14px;
+  }
+  .mini-address {
+    margin: 0 0 9px;
+    color: #0A2D54;
+    font-size: 12px;
+  }
+  .mini-transit {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    color: #0A2D54;
+    font-size: 12px;
+  }
+  .line-two {
+    display: inline-grid;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    place-items: center;
+    border-radius: 50%;
+    background: #43A64E;
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .focus-map {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 176px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #e9eef2;
+  }
+  .focus-panel {
+    position: relative;
+    background-image: linear-gradient(rgba(255,255,255,.20), rgba(255,255,255,.20)), url('/files/map-capture.png');
+    background-repeat: no-repeat;
+    background-size: 480% auto;
+  }
+  .focus-panel.venue { background-position: 15% 45%; }
+  .focus-panel.station { background-position: 97% 45%; }
+  .focus-panel::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 65%, rgba(240,244,248,.78));
+    content: "";
+  }
+  .focus-panel.station::after { background: linear-gradient(90deg, rgba(240,244,248,.78), transparent 35%); }
+  .map-pin {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    min-width: 76px;
+    padding: 7px 9px;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+  }
+  .venue .map-pin { left: 8px; background: #0A2D54; }
+  .station .map-pin { right: 8px; background: #43A64E; }
+  .travel-chip {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    place-items: center;
+    border: 4px solid #F0F4F8;
+    border-radius: 50%;
+    background: #0063A6;
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.1;
+  }
+  .route-card {
+    padding: 22px 14px 18px;
+    border: 1px solid rgba(0, 99, 166, .25);
+    border-radius: 12px;
+    background: white;
+  }
+  .route-strip {
+    position: relative;
+    display: grid;
+    grid-template-columns: 72px 1fr 72px;
+    align-items: center;
+    min-height: 112px;
+  }
+  .route-node {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    color: #0A2D54;
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .route-node .dot {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 4px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #0A2D54;
+    background: #0A2D54;
+    color: white;
+    font-size: 14px;
+  }
+  .route-node.station .dot {
+    box-shadow: 0 0 0 2px #43A64E;
+    background: #43A64E;
+  }
+  .route-line {
+    position: relative;
+    height: 6px;
+    border-radius: 999px;
+    background: #0063A6;
+  }
+  .route-line::after {
+    position: absolute;
+    top: 50%;
+    right: -1px;
+    width: 11px;
+    height: 11px;
+    transform: translateY(-50%) rotate(45deg);
+    border-top: 4px solid #0063A6;
+    border-right: 4px solid #0063A6;
+    content: "";
+  }
+  .walk-time {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #0063A6;
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .choice-body { padding: 18px 18px 20px; }
+  .choice-kicker {
+    margin: 0 0 4px;
+    color: #0063A6;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .choice-body h3 { margin: 0 0 8px; color: #0A2D54; font-size: 18px; }
+  .choice-body p { margin: 0; color: #526578; font-size: 13px; line-height: 1.55; }
+  .recommended {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: #e8f5ea;
+    color: #2f7f39;
+    font-size: 10px;
+    vertical-align: 2px;
+  }
+  @media (max-width: 920px) {
+    .map-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<h2>360px에서 “삼성역 ↔ 행사장”을 어떻게 보여줄까요?</h2>
+<p class="subtitle">같은 모바일 폭을 전제로 비교했습니다. 주변 상호명과 도로명은 성공 기준에서 제외했습니다.</p>
+
+<div class="comparison-note">
+  왼쪽은 현재 화면의 기준점입니다. 가운데와 오른쪽 중에서 관계가 더 빠르게 읽히는 쪽을 선택해 주세요.
+</div>
+
+<div class="map-grid">
+  <div class="map-choice">
+    <div class="phone">
+      <h4>오시는 길</h4>
+      <img class="baseline-map" src="/files/map-capture.png" alt="현재 전체 지도 캡처">
+      <p class="mini-address">서울시 강남구 테헤란로81길 14, 8층</p>
+      <p class="mini-transit"><span class="line-two">2</span>삼성역 5번출구에서 도보 약 10분</p>
+    </div>
+    <div class="choice-body">
+      <p class="choice-kicker">현재 기준</p>
+      <h3>전체 지도 축소</h3>
+      <p>지리적 맥락은 모두 남지만, 360px에서는 핵심 지점도 주변 정보와 함께 작아집니다.</p>
+    </div>
+  </div>
+
+  <div class="map-choice selectable card" data-choice="focus-map" onclick="toggleSelect(this)">
+    <div class="phone">
+      <h4>오시는 길</h4>
+      <div class="focus-map">
+        <div class="focus-panel venue"><span class="map-pin">행사장</span></div>
+        <div class="focus-panel station"><span class="map-pin">삼성역 5번</span></div>
+        <span class="travel-chip">도보<br>약 10분</span>
+      </div>
+      <p class="mini-address" style="margin-top:14px">서울시 강남구 테헤란로81길 14, 8층</p>
+      <p class="mini-transit"><span class="line-two">2</span>삼성역 5번출구에서 행사장까지</p>
+    </div>
+    <div class="choice-body">
+      <p class="choice-kicker">선택 A</p>
+      <h3>두 지점 확대 지도</h3>
+      <p>원래 지도 질감은 유지하되 행사장과 역 주변을 각각 확대합니다. 실제 지도 느낌은 남지만 중간 경로는 요약됩니다.</p>
+    </div>
+  </div>
+
+  <div class="map-choice selectable card" data-choice="route-strip" onclick="toggleSelect(this)">
+    <div class="phone">
+      <h4>오시는 길</h4>
+      <div class="route-card">
+        <div class="route-strip">
+          <div class="route-node">
+            <span class="dot">도착</span>
+            <span>호연회계법인<br>행사장</span>
+          </div>
+          <div class="route-line"></div>
+          <div class="route-node station">
+            <span class="dot">2</span>
+            <span>삼성역<br>5번 출구</span>
+          </div>
+          <span class="walk-time">도보 약 10분 · 서쪽 방향</span>
+        </div>
+      </div>
+      <p class="mini-address" style="margin-top:14px">서울시 강남구 테헤란로81길 14, 8층</p>
+      <p class="mini-transit"><span class="line-two">2</span>삼성역에서 행사장까지 한눈에</p>
+    </div>
+    <div class="choice-body">
+      <p class="choice-kicker">선택 B <span class="recommended">추천</span></p>
+      <h3>단순 경로 안내도</h3>
+      <p>배경 지도를 제거하고 두 지점, 방향, 도보 시간만 남깁니다. 모바일에서 관계가 가장 빠르고 크게 읽힙니다.</p>
+    </div>
+  </div>
+</div>
