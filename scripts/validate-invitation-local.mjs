@@ -9,11 +9,11 @@ if (!htmlPath || !cssPath) {
 const html = readFileSync(htmlPath, "utf8");
 const css = readFileSync(cssPath, "utf8");
 const all = `${html}\n${css}`;
+const parkingSearchUrl = "https://map.naver.com/p/search/%EC%A3%BC%EC%B0%A8%EC%9E%A5?c=3zkOlZ%2C2AJB2L%2C15.00%2C0%2C0%2C0%2Cdh";
 const externalLinkTags = [...html.matchAll(/<a\b[^>]*>/gi)]
   .map(([tag]) => tag)
   .filter((tag) => /\bhref=["']https:\/\//i.test(tag));
-const parkingLinkTag = [...html.matchAll(/<a\b[^>]*class=["'][^"']*\bparking-link\b[^"']*["'][^>]*>/gi)]
-  .map(([tag]) => tag)[0] ?? "";
+const parkingLinkTag = externalLinkTags.find((tag) => tag.includes(`href="${parkingSearchUrl}"`)) ?? "";
 const approvedCareerEntries = [
   "국세청 근무경력 30년",
   "전 서울지방국세청 조사4국 조사팀장",
@@ -54,10 +54,10 @@ const checks = [
       !html.includes("[주차 안내가 확정되면 이곳에 표시됩니다]"),
   ],
   [
-    "secure venue map link and internal parking page",
-    externalLinkTags.length === 1 &&
+    "secure venue and parking map links",
+    externalLinkTags.length === 2 &&
       externalLinkTags.every((tag) => /\btarget=["']_blank["']/i.test(tag) && /\brel=["']noopener["']/i.test(tag)) &&
-      /href=["']parking\.html["']/i.test(parkingLinkTag) &&
+      parkingLinkTag.includes(`href="${parkingSearchUrl}"`) &&
       /<a\b[^>]*class=["'][^"']*\bparking-link\b[^"']*["'][^>]*>[\s\S]*?인근 주차장 확인하기[\s\S]*?<\/a>/i.test(html),
   ],
   [
@@ -66,6 +66,7 @@ const checks = [
       /\.parking-link\s*\{[^}]*\bbackground\s*:\s*var\(--platinum\)[^}]*\bcolor\s*:\s*var\(--navy\)/i.test(css) &&
       /\.parking-link:focus-visible\s*\{[^}]*\boutline\s*:/i.test(css),
   ],
+  ["parking location hint", html.includes("본 건물 주변에서 클릭해주세요") && /class=["']parking-location-hint["']/.test(html)],
   ["valid event-details nesting", !/<p>[^<]*<span[^>]*>[^<]*<\/span><strong>[\s\S]*?<\/p><\/strong>/i.test(html)],
 ];
 

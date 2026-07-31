@@ -85,6 +85,7 @@ address { margin-bottom: 16px; font-size: 1rem; font-style: normal; }
 .parking-warning { font-size: 1rem; }
 .parking-detail { margin-top: 8px; font-size: .875rem; line-height: 1.6; }
 .parking-link { margin-top: 14px; background: var(--platinum); color: var(--navy); text-decoration: none; }
+.parking-location-hint { margin: 8px 0 0; color: var(--platinum); font-size: .8125rem; line-height: 1.5; }
 .account-section { background: var(--platinum); color: var(--navy); }
 .account-card { padding: 28px 20px; border: 1px solid var(--blue); border-radius: 16px; background: var(--platinum); }
 .account-message { margin-bottom: 0; text-align: center; color: var(--navy); font-size: 1.1rem; }
