@@ -92,12 +92,12 @@ In another terminal, open a Playwright session and capture both screenshots:
 ```powershell
 npx --yes --package @playwright/cli playwright-cli -s=original-map open http://127.0.0.1:4173/index.html
 npx --yes --package @playwright/cli playwright-cli -s=original-map resize 360 900
-npx --yes --package @playwright/cli playwright-cli -s=original-map screenshot --full-page --filename output/playwright/invitation-original-map-360.png
+npx --yes --package @playwright/cli playwright-cli -s=original-map screenshot --filename output/playwright/invitation-original-map-360.png
 npx --yes --package @playwright/cli playwright-cli -s=original-map resize 640 900
-npx --yes --package @playwright/cli playwright-cli -s=original-map screenshot --full-page --filename output/playwright/invitation-original-map-640.png
+npx --yes --package @playwright/cli playwright-cli -s=original-map screenshot --filename output/playwright/invitation-original-map-640.png
 ```
 
-Expected: both files exist and show the complete invitation without horizontal clipping.
+After each resize, scroll until the `오시는 길` heading and complete map are visible, then capture the 900px viewport. Expected: both files exist, show the map and its adjacent directions content, and show no horizontal clipping.
 
 - [ ] **Step 6: Verify map geometry and inspect visual readability**
 
