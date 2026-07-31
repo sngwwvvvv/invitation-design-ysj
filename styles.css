@@ -46,7 +46,8 @@ body {
 h1, h2, h3, p { margin-top: 0; }
 h1 { margin-bottom: 26px; color: var(--navy); font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 800; letter-spacing: -.04em; line-height: 1.45; }
 h2 { margin-bottom: 28px; font-size: 1.75rem; line-height: 1.3; font-weight: 800; }
-h3 { margin-bottom: 4px; color: var(--navy); font-size: 1.125rem; font-weight: 800; }
+h3 { margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(10, 45, 84, .16); color: var(--navy); font-size: 1.125rem; font-weight: 800; }
+.career-icon { display: inline-block; margin-right: .12em; font-size: .86em; line-height: 1; vertical-align: -.04em; filter: saturate(.72); }
 #event-details { margin: 0 auto 26px; text-align: center; }
 #event-details p { margin: 0; }
 .event-pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; background: var(--slate); color: var(--platinum); font-size: calc(.75rem + 2px); letter-spacing: -.03em; line-height: 1.4; white-space: nowrap; }
@@ -65,7 +66,8 @@ h3 { margin-bottom: 4px; color: var(--navy); font-size: 1.125rem; font-weight: 8
 .portrait, .map-image { display: block; width: 100%; height: auto; }
 .portrait { object-fit: contain; }
 .eyebrow { margin-bottom: 8px; color: var(--blue); font-weight: 700; }
-.career-list { margin: 0; padding-left: 18px; font-size: calc(.9375rem + 2px); line-height: 1.7; font-weight: 600;}
+.career-list { margin: 0; padding-left: 18px; font-size: calc(.9375rem + 2px); line-height: 1.7; font-weight: 500;}
+.career-list li::marker { font-size: .72em; }
 .directions, .account-section { position: relative; }
 .directions { background: var(--platinum); color: var(--navy); }
 .directions::before, .account-section::before {
@@ -79,8 +81,8 @@ h3 { margin-bottom: 4px; color: var(--navy); font-size: 1.125rem; font-weight: 8
 }
 .directions h2 { color: var(--navy); font-size: 1.75rem; text-align: center; }
 .map-image { margin-bottom: 20px; border: 0; }
-address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; font-weight: 600;}
-.transit { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-size: calc(1rem + 2px); font-weight: 600;}
+address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; font-weight: 500;}
+.transit { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-size: calc(1rem + 2px); font-weight: 500;}
 .transit img { width: 1.5rem; height: auto; }
 .map-link, .parking-link, #copy-account-number { display: flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 8px; font-size: calc(1.0625rem + 2px); font-weight: 700; }
 .map-link { background: var(--green); color: var(--platinum); text-decoration: none; }
@@ -91,10 +93,10 @@ address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; 
 .parking-link { margin-top: 14px; background: var(--platinum); color: var(--navy); text-decoration: none; }
 .account-section { background: var(--platinum); color: var(--navy); }
 .account-card { padding: 28px 20px; border: 1px solid var(--blue); border-radius: 16px; background: var(--platinum); }
-.account-message { margin-bottom: 0; text-align: center; color: var(--navy); font-size: calc(1.1rem + 1px); font-weight:600;}
+.account-message { margin-bottom: 0; text-align: center; color: var(--navy); font-size: calc(1.1rem + 1px); font-weight:500;}
 .account-card dl { margin: 24px 0; padding-top: 20px; border-top: 1px solid var(--blue); font-size: 14px; }
 .account-card dl > div { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; }
-.account-card dd { margin: 0; font-weight: 700; }
+.account-card dd { margin: 0; font-weight: 500; }
 .account-card dl > div:nth-child(2) dd { color: var(--navy); font-size: calc(1.15rem + 1px); }
 #copy-account-number { width: 100%; border: 0; background: var(--navy); color: var(--platinum); cursor: pointer; }
 #copy-status { min-height: 1.7em; margin: 12px 0 0; color: var(--navy); text-align: center; }
