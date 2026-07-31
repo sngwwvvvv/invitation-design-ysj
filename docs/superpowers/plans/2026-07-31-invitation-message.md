@@ -2,15 +2,15 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** 확정된 초청 인사말을 정확한 문단 줄바꿈과 높은 대비의 패널로 인트로 영역에 표시한다.
+**Goal:** 확정된 초청 인사말을 문단 간 간격과 강조된 글꼴로 인트로 영역에 표시한다.
 
-**Architecture:** `index.html`의 자리표시자를 의미 단위별 `<p>`와 서명 영역으로 교체하고 `id="invitation-message"`를 부여한다. `styles.css`에서 인사말 패널, 본문 왼쪽 정렬, 서명 오른쪽 정렬, 모바일 여백을 정의한다. 기존 Node 기반 로컬 검증 스크립트에 콘텐츠·스타일 계약을 추가한다.
+**Architecture:** `index.html`의 자리표시자를 의미 단위별 `<p>`와 서명 영역으로 교체하고 `id="invitation-message"`를 부여한다. `styles.css`에서 패널 없는 강조 글꼴, 본문 왼쪽 정렬, 서명 오른쪽 정렬, 모바일 여백을 정의한다. 기존 Node 기반 로컬 검증 스크립트에 콘텐츠·스타일 계약을 추가한다.
 
 **Tech Stack:** 정적 HTML, CSS, Node.js 검증 스크립트
 
 ## Global Constraints
 
-- 확정 문구의 문단 내부 줄바꿈과 문단 순서를 보존한다.
+- 확정 문구의 문단 순서를 보존하고 강제 줄바꿈은 사용하지 않는다.
 - 모바일에서는 자연 줄바꿈을 허용하되 가로 넘침과 텍스트 잘림을 만들지 않는다.
 - 기존 네이비·플래티넘 색상 체계를 유지한다.
 - 기존 행사 정보 → 초청 인사말 순서를 유지한다.
@@ -28,7 +28,7 @@
 
 - [ ] **Step 1: Write the failing test**
 
-  검증 배열에 다음 계약을 추가한다: `id="invitation-message"`, 자리표시자 제거, 확정 문구 포함, 본문 `<br>` 줄바꿈 8개 이상, 서명 영역, 본문 왼쪽 정렬, 서명 오른쪽 정렬, 밝은 패널 배경.
+  검증 배열에 다음 계약을 추가한다: `id="invitation-message"`, 자리표시자 제거, 확정 문구 포함, 본문 `<br>` 0개, 서명 영역, 본문 왼쪽 정렬, 서명 오른쪽 정렬, 굵은 글꼴, 투명 배경·테두리·그림자 제거.
 
 - [ ] **Step 2: Run test to verify it fails**
 
@@ -52,11 +52,11 @@
 
 - [ ] **Step 1: Replace placeholder with semantic paragraphs**
 
-  다섯 개 본문 문단을 `<p>`로 작성하고 제공된 줄바꿈을 `<br>`로 표현한다. 날짜·직함·이름은 `.invitation-signature`로 분리한다.
+  다섯 개 본문 문단을 `<p>`로 작성하고 강제 줄바꿈 없이 문장 사이 자연 줄바꿈을 허용한다. 날짜·직함·이름은 `.invitation-signature`로 분리한다.
 
 - [ ] **Step 2: Add readable panel styling**
 
-  `.invitation-message`에 `max-width`, 밝은 반투명 배경, 네이비 텍스트, 패딩, 테두리, 그림자를 적용한다. `.invitation-copy`는 왼쪽 정렬, `.invitation-signature`는 오른쪽 정렬, 문단 간격과 충분한 줄 높이를 지정한다. 모바일 미디어 쿼리에서 패널 패딩을 줄인다.
+  `.invitation-message`에 투명 배경, 테두리·그림자 제거, 굵은 네이비 텍스트, 충분한 줄 높이를 적용한다. `.invitation-copy`는 왼쪽 정렬, `.invitation-signature`는 오른쪽 정렬, 문단 간격을 지정한다. 모바일 미디어 쿼리에서 좌우 여백과 글자 크기를 조정한다.
 
 - [ ] **Step 3: Run test to verify it passes**
 

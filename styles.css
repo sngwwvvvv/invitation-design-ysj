@@ -52,11 +52,12 @@ h3 { margin-bottom: 4px; color: var(--navy); font-size: 1.125rem; }
 #event-details p { margin: 0; }
 .event-pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; background: var(--slate); color: var(--platinum); font-size: .75rem; letter-spacing: -.03em; line-height: 1.4; white-space: nowrap; }
 .event-icon { color: var(--green); }
-.invitation-message { max-width: 480px; margin: 0 auto; padding: 28px 30px 26px; border: 1px solid rgba(10, 45, 84, .24); border-radius: 16px; background: rgba(240, 244, 248, .92); box-shadow: 0 10px 24px rgba(10, 45, 84, .2); color: var(--navy); font-size: 1rem; line-height: 1.95; text-align: left; }
+.invitation-message { max-width: 480px; margin: 0 auto; padding: 12px 4px 8px; border: 0; background: transparent; box-shadow: none; color: var(--navy); font-size: 1rem; font-weight: 700; letter-spacing: -.01em; line-height: 2; text-align: left; text-shadow: 0 1px 0 rgba(240, 244, 248, .5); }
 .invitation-copy { text-align: left; }
 .invitation-copy p { margin: 0 0 20px; }
 .invitation-copy p:last-child { margin-bottom: 0; }
 .invitation-signature { margin: 26px 0 0; color: var(--navy); font-size: .9375rem; line-height: 1.8; text-align: right; }
+.invitation-signature span { display: block; }
 .content-section, .account-section { padding: 56px 40px; }
 .content-section { background: var(--platinum); }
 .profile-section { padding-top: 40px; }
