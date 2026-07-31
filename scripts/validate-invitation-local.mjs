@@ -9,7 +9,7 @@ if (!htmlPath || !cssPath) {
 const html = readFileSync(htmlPath, "utf8");
 const css = readFileSync(cssPath, "utf8");
 const all = `${html}\n${css}`;
-const parkingSearchUrl = "https://map.naver.com/p/search/%EC%A3%BC%EC%B0%A8%EC%9E%A5?c=3zkOlZ%2C2AJB2L%2C15.00%2C0%2C0%2C0%2Cdh";
+const parkingSearchUrl = "https://map.naver.com/p/search/%EC%82%BC%EC%84%B1%EC%97%AD%EC%A3%BC%EB%B3%80%EC%A3%BC%EC%B0%A8%EC%9E%A5";
 const externalLinkTags = [...html.matchAll(/<a\b[^>]*>/gi)]
   .map(([tag]) => tag)
   .filter((tag) => /\bhref=["']https:\/\//i.test(tag));
@@ -66,7 +66,6 @@ const checks = [
       /\.parking-link\s*\{[^}]*\bbackground\s*:\s*var\(--platinum\)[^}]*\bcolor\s*:\s*var\(--navy\)/i.test(css) &&
       /\.parking-link:focus-visible\s*\{[^}]*\boutline\s*:/i.test(css),
   ],
-  ["parking location hint", html.includes("본 건물 주변에서 클릭해주세요") && /class=["']parking-location-hint["']/.test(html)],
   ["valid event-details nesting", !/<p>[^<]*<span[^>]*>[^<]*<\/span><strong>[\s\S]*?<\/p><\/strong>/i.test(html)],
 ];
 
