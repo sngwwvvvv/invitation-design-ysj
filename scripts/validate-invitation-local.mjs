@@ -50,6 +50,8 @@ const checks = [
   ["aligns invitation signature to the right", /\.invitation-signature\s*\{[^}]*text-align\s*:\s*right/i.test(css)],
   ["emphasizes invitation typography", /\.invitation-message\s*\{[^}]*font-weight\s*:\s*(?:600|700|bold)/i.test(css) && /\.invitation-message\s*\{[^}]*color\s*:/i.test(css)],
   ["removes invitation panel chrome", /\.invitation-message\s*\{[^}]*background\s*:\s*transparent/i.test(css) && /\.invitation-message\s*\{[^}]*border\s*:\s*0/i.test(css) && /\.invitation-message\s*\{[^}]*box-shadow\s*:\s*none/i.test(css)],
+  ["lightens the intro background overlay", /#intro-section::before\s*\{[\s\S]*?rgba\(240, 244, 248, \.82\)/i.test(css)],
+  ["brightens the intro background image", /#intro-section::before\s*\{[\s\S]*?filter\s*:\s*brightness\(1\.12\)\s+saturate\(\.78\)/i.test(css)],
   ["Korean document language", /<html[^>]+lang=["']ko["']/i.test(html)],
   ["stylesheet link", /<link\b(?=[^>]*\brel=["']stylesheet["'])(?=[^>]*\bhref=["']styles\.css["'])[^>]*>/i.test(html)],
   ["invitation has one primary heading", /<h1\b[^>]*id=["']invitation-title["'][^>]*>[\s\S]*?<\/h1>/i.test(html)],
