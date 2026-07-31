@@ -52,7 +52,11 @@ h3 { margin-bottom: 4px; color: var(--navy); font-size: 1.125rem; }
 #event-details p { margin: 0; }
 .event-pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; background: var(--slate); color: var(--platinum); font-size: .75rem; letter-spacing: -.03em; line-height: 1.4; white-space: nowrap; }
 .event-icon { color: var(--green); }
-.invitation-message { max-width: 420px; margin: 0 auto; font-size: .9375rem; line-height: 2; }
+.invitation-message { max-width: 480px; margin: 0 auto; padding: 28px 30px 26px; border: 1px solid rgba(10, 45, 84, .24); border-radius: 16px; background: rgba(240, 244, 248, .92); box-shadow: 0 10px 24px rgba(10, 45, 84, .2); color: var(--navy); font-size: 1rem; line-height: 1.95; text-align: left; }
+.invitation-copy { text-align: left; }
+.invitation-copy p { margin: 0 0 20px; }
+.invitation-copy p:last-child { margin-bottom: 0; }
+.invitation-signature { margin: 26px 0 0; color: var(--navy); font-size: .9375rem; line-height: 1.8; text-align: right; }
 .content-section, .account-section { padding: 56px 40px; }
 .content-section { background: var(--platinum); }
 .profile-section { padding-top: 40px; }
@@ -114,5 +118,6 @@ address { margin-bottom: 16px; font-size: 1rem; font-style: normal; }
   .profile-grid { grid-template-columns: 1fr; gap: 20px; }
   .portrait { width: min(180px, 100%); margin: 0 auto; }
   .career-list { font-size: .875rem; }
+  .invitation-message { padding: 22px 20px 20px; font-size: .9375rem; }
   .account-card dl > div:nth-child(2) dd { flex-shrink: 0; white-space: nowrap; }
 }

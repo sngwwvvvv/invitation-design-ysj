@@ -45,7 +45,7 @@ const checks = [
       "세무사 윤성중 드림",
     ].every((value) => html.includes(value)),
   ],
-  ["preserves invitation manual line breaks", (html.match(/class=["']invitation-copy["'][\s\S]*?<\/p>/i)?.[0].match(/<br\b/gi) ?? []).length >= 8],
+  ["preserves invitation manual line breaks", (html.match(/class=["']invitation-copy["'][\s\S]*?<\/div>/i)?.[0].match(/<br\b/gi) ?? []).length === 6],
   ["aligns invitation copy to the left", /\.invitation-copy\s*\{[^}]*text-align\s*:\s*left/i.test(css)],
   ["aligns invitation signature to the right", /\.invitation-signature\s*\{[^}]*text-align\s*:\s*right/i.test(css)],
   ["uses a readable invitation panel", /\.invitation-message\s*\{[^}]*background\s*:/i.test(css) && /\.invitation-message\s*\{[^}]*color\s*:/i.test(css)],
