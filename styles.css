@@ -94,10 +94,10 @@ address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; 
 .account-section { background: var(--platinum); color: var(--navy); }
 .account-card { padding: 28px 20px; border: 1px solid var(--blue); border-radius: 16px; background: var(--platinum); }
 .account-message { margin-bottom: 0; text-align: center; color: var(--navy); font-size: calc(1.1rem + 1px); font-weight:500;}
-.account-card dl { margin: 24px 0; padding-top: 20px; border-top: 1px solid var(--blue); font-size: 14px; }
+.account-card dl { margin: 24px 0; padding-top: 20px; border-top: 1px solid var(--blue); font-size: 1.15rem; }
 .account-card dl > div { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; }
 .account-card dd { margin: 0; font-weight: 500; }
-.account-card dl > div:nth-child(2) dd { color: var(--navy); font-size: calc(1.15rem + 1px); }
+.account-card dl > div:nth-child(2) dd { color: var(--navy); }
 #copy-account-number { width: 100%; border: 0; background: var(--navy); color: var(--platinum); cursor: pointer; }
 #copy-status { min-height: 1.7em; margin: 12px 0 0; color: var(--navy); text-align: center; }
 .map-link:focus-visible { outline: 3px solid var(--navy); outline-offset: -3px; }
