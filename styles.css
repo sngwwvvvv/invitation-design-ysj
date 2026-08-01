@@ -125,8 +125,8 @@ address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; 
 }
 
 @media (max-width: 639px) {
-  .invitation-message { font-size: calc(1rem + 1px); }
-  .career-list { font-size: calc(.9375rem + 1px); }
+  .invitation-message { font-size: calc(1rem + .5px); }
+  .career-list { font-size: calc(.9375rem + .5px); }
   .account-card { padding: 14px 16px; border-radius: 12px; }
   .account-message { font-size: calc(.9375rem + 1px); }
   .account-card dl { margin: 12px 0; padding-top: 10px; font-size: 1rem; }
