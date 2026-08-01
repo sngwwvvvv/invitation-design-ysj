@@ -123,3 +123,16 @@ address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; 
   .invitation-message { padding: 22px 20px 20px; font-size: calc(.9375rem + 2px); }
   .account-card dl > div:nth-child(2) dd { flex-shrink: 0; white-space: nowrap; }
 }
+
+@media (max-width: 639px) {
+  .invitation-message { font-size: calc(1rem + 1px); }
+  .career-list { font-size: calc(.9375rem + 1px); }
+  .account-card { padding: 14px 16px; border-radius: 12px; }
+  .account-message { font-size: calc(.9375rem + 1px); }
+  .account-card dl { margin: 12px 0; padding-top: 10px; font-size: 1rem; }
+  .account-card dl > div { padding: 4px 0; }
+  #copy-account-number { min-height: 36px; font-size: 1rem; }
+  #copy-status { min-height: 0; margin-top: 6px; font-size: .8125rem; line-height: 1.5; }
+  #copy-status:empty { display: none; }
+  .account-card dl > div:nth-child(2) dd { flex-shrink: 0; white-space: nowrap; }
+}
