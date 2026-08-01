@@ -9,7 +9,7 @@ if (!htmlPath || !cssPath) {
 const html = readFileSync(htmlPath, "utf8");
 const css = readFileSync(cssPath, "utf8");
 const all = `${html}\n${css}`;
-const parkingSearchUrl = "https://map.naver.com/p/search/%EC%82%BC%EC%84%B1%EC%97%AD%EC%A3%BC%EB%B3%80%EC%A3%BC%EC%B0%A8%EC%9E%A5";
+const parkingSearchUrl = "https://map.naver.com/p/search/%EC%B9%B4%EC%9D%B4%EB%A7%88%EB%B9%8C%EB%94%A9%EC%A3%BC%EB%B3%80%EB%AF%BC%EC%98%81%EC%A3%BC%EC%B0%A8%EC%9E%A5";
 const externalLinkTags = [...html.matchAll(/<a\b[^>]*>/gi)]
   .map(([tag]) => tag)
   .filter((tag) => /\bhref=["']https:\/\//i.test(tag));
