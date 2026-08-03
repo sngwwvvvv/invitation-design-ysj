@@ -28,6 +28,7 @@
 - Create `scripts/validate-responsive-intro-images.mjs`: focused static contract and PNG-dimension validator.
 - Create `scripts/intro-section-stage.html`: development-only source for the three approved artboards.
 - Create `scripts/render-intro-images.playwright.js`: function consumed by Playwright CLI to render the three PNGs.
+- Create `scripts/intro-render.config.json`: Playwright CLI context configuration with Microsoft Edge and `deviceScaleFactor: 2`.
 - Create `img/intro-section-360.png`: 720px-wide 2x capture of the 360px artboard.
 - Create `img/intro-section-480.png`: 960px-wide 2x capture of the 480px artboard.
 - Create `img/intro-section-640.png`: 1280px-wide 2x capture of the 640px artboard.
@@ -145,6 +146,7 @@ git commit -m "test: define responsive intro image contract"
 **Files:**
 - Create: `scripts/intro-section-stage.html`
 - Create: `scripts/render-intro-images.playwright.js`
+- Create: `scripts/intro-render.config.json`
 - Create: `img/intro-section-360.png`
 - Create: `img/intro-section-480.png`
 - Create: `img/intro-section-640.png`
@@ -240,6 +242,8 @@ npx --yes --package @playwright/cli playwright-cli -s=intro-image-render run-cod
 npx --yes --package @playwright/cli playwright-cli -s=intro-image-render close
 ```
 
+Before the first command, create `.playwright/cli.config.json` from `scripts/intro-render.config.json`, or pass the same JSON through the CLI's `--config` option on `open`; the session must be created with `contextOptions.deviceScaleFactor` set to `2`. Subsequent commands reuse that session.
+
 Expected: the three named PNG files appear under `img` with no navigation, image-load, or screenshot error.
 
 - [ ] **Step 4: Verify the PNG headers and corrected 640px rendering**
@@ -262,7 +266,7 @@ Open `img/intro-section-640.png` and visually confirm the corrected lines are ex
 - [ ] **Step 5: Commit the reproducible stage and generated assets**
 
 ```powershell
-git add -- scripts/intro-section-stage.html scripts/render-intro-images.playwright.js img/intro-section-360.png img/intro-section-480.png img/intro-section-640.png
+git add -- scripts/intro-section-stage.html scripts/render-intro-images.playwright.js scripts/intro-render.config.json img/intro-section-360.png img/intro-section-480.png img/intro-section-640.png
 git commit -m "feat: render responsive intro image assets"
 ```
 
