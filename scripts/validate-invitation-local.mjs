@@ -89,6 +89,12 @@ const checks = [
       /class=["'][^"']*\bparking-list\b[^"']*["']/i.test(html),
   ],
   [
+    "parking list column headers",
+    html.includes("주차장명") &&
+      html.includes("시간당요금") &&
+      /class=["'][^"']*\bparking-list-header\b[^"']*["']/i.test(html),
+  ],
+  [
     "secure venue map link only",
     externalLinkTags.length === 1 &&
       externalLinkTags.every((tag) => /\btarget=["']_blank["']/i.test(tag) && /\brel=["']noopener["']/i.test(tag)) &&

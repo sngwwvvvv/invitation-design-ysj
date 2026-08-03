@@ -57,7 +57,9 @@ address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; 
 .parking-warning, .parking-detail { margin: 0; text-align: left; }
 .parking-warning { font-size: calc(1rem + 1px); }
 .parking-detail { margin-top: 8px; font-size: calc(.875rem + 1px); line-height: 1.6; }
-.parking-list { margin: 16px 0 0; text-align: left; }
+.parking-list-header { display: flex; justify-content: space-between; gap: 12px; margin-top: 16px; padding-bottom: 6px; border-bottom: 1px solid rgba(240, 244, 248, .35); color: rgba(240, 244, 248, .8); font-size: .75rem; font-weight: 700; text-align: left; }
+.parking-list-header span:last-child { flex-shrink: 0; }
+.parking-list { margin: 0; text-align: left; }
 .parking-list > div { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 8px 0; border-top: 1px solid rgba(240, 244, 248, .35); }
 .parking-list dt { min-width: 0; font-size: .9375rem; line-height: 1.45; }
 .parking-list dd { flex-shrink: 0; margin: 0; font-size: .9375rem; font-weight: 700; line-height: 1.45; white-space: nowrap; }
