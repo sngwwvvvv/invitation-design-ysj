@@ -50,13 +50,18 @@ h3 { margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(10,
 address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; font-weight: 500;}
 .transit { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-size: calc(1rem + 2px); font-weight: 500;}
 .transit img { width: 1.5rem; height: auto; }
-.map-link, .parking-link, #copy-account-number { display: flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 8px; font-size: calc(1.0625rem + 2px); font-weight: 700; }
+.map-link, #copy-account-number { display: flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 8px; font-size: calc(1.0625rem + 2px); font-weight: 700; }
 .map-link { background: var(--green); color: var(--platinum); text-decoration: none; }
 .parking-notice { margin: 18px 0 0; padding: 18px 14px; background: var(--navy); color: var(--platinum); text-align: center; }
+.parking-notice h3 { margin: 0 0 10px; padding: 0; border: 0; color: var(--platinum); font-size: 1.125rem; }
 .parking-warning, .parking-detail { margin: 0; }
 .parking-warning { font-size: calc(1rem + 1px); }
 .parking-detail { margin-top: 8px; font-size: calc(.875rem + 1px); line-height: 1.6; }
-.parking-link { margin-top: 14px; background: var(--platinum); color: var(--navy); text-decoration: none; }
+.parking-list { margin: 16px 0 0; text-align: left; }
+.parking-list > div { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 8px 0; border-top: 1px solid rgba(240, 244, 248, .35); }
+.parking-list dt { min-width: 0; font-size: .9375rem; line-height: 1.45; }
+.parking-list dd { flex-shrink: 0; margin: 0; font-size: .9375rem; font-weight: 700; line-height: 1.45; white-space: nowrap; }
+.parking-footnote { margin: 10px 0 0; color: rgba(240, 244, 248, .8); font-size: .75rem; line-height: 1.4; }
 .account-section { background: var(--platinum); color: var(--navy); }
 .account-card { padding: 28px 20px; border: 1px solid var(--blue); border-radius: 16px; background: var(--platinum); }
 .account-message { margin-bottom: 0; text-align: center; color: var(--navy); font-size: calc(1.1rem + 1px); font-weight:500;}
@@ -67,7 +72,6 @@ address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; 
 #copy-account-number { width: 100%; border: 0; background: var(--navy); color: var(--platinum); cursor: pointer; }
 #copy-status { min-height: 1.7em; margin: 12px 0 0; color: var(--navy); text-align: center; }
 .map-link:focus-visible { outline: 3px solid var(--navy); outline-offset: -3px; }
-.parking-link:focus-visible { outline: 3px solid var(--green); outline-offset: -3px; }
 #copy-account-number:focus-visible { outline: 3px solid var(--green); outline-offset: -3px; }
 
 @media (max-width: 480px) {

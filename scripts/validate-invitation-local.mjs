@@ -13,7 +13,6 @@ const parkingSearchUrl = "https://map.naver.com/p/search/%EC%B9%B4%EC%9D%B4%EB%A
 const externalLinkTags = [...html.matchAll(/<a\b[^>]*>/gi)]
   .map(([tag]) => tag)
   .filter((tag) => /\bhref=["']https:\/\//i.test(tag));
-const parkingLinkTag = externalLinkTags.find((tag) => tag.includes(`href="${parkingSearchUrl}"`)) ?? "";
 const approvedCareerEntries = [
   "국세청 근무경력 30년",
   "전 서울지방국세청 조사4국 조사팀장",
@@ -72,23 +71,34 @@ const checks = [
   ["profile uses a named section band", /class=["'][^"']*profile-heading/.test(html) && /\.profile-heading\s*\{/i.test(css)],
   ["directions and account use platinum panels", /\.directions\s*\{[^}]*\bbackground\s*:\s*var\(--platinum\)/i.test(css) && /\.directions\s*\{[^}]*\bcolor\s*:\s*var\(--navy\)/i.test(css) && /\.directions\s+h2\s*\{[^}]*\bcolor\s*:\s*var\(--navy\)/i.test(css) && /\.account-section\s*\{[^}]*\bbackground\s*:\s*var\(--platinum\)/i.test(css) && /\.account-section\s*\{[^}]*\bcolor\s*:\s*var\(--navy\)/i.test(css) && /\.account-card\s*\{[^}]*\bbackground\s*:\s*var\(--platinum\)/i.test(css) && /\.map-link\s*\{[^}]*\bbackground\s*:\s*var\(--green\)/i.test(css) && /\.parking-notice\s*\{[^}]*\bbackground\s*:\s*var\(--navy\)/i.test(css) && /#copy-account-number\s*\{[^}]*\bbackground\s*:\s*var\(--navy\)/i.test(css)],
   [
-    "approved parking notice",
-    html.includes("❗ 본 건물에는 주차가 불가합니다.") &&
-      html.includes("죄송하지만 인근 유료주차장 이용을 부탁드립니다.") &&
-      !html.includes("[주차 안내가 확정되면 이곳에 표시됩니다]"),
+    "static parking notice copy",
+    html.includes("주차 안내") &&
+      html.includes("본 건물에는 주차가 불가합니다.") &&
+      html.includes("아래 인근 유료주차장을 이용해 주세요.") &&
+      html.includes("※ 요금은 주차장 사정에 따라 변동될 수 있습니다.") &&
+      !html.includes("[주차 안내가 확정되면 이곳에 표시됩니다]") &&
+      !html.includes("인근 주차장 확인하기"),
   ],
   [
-    "secure venue and parking map links",
-    externalLinkTags.length === 2 &&
+    "static parking names and rates",
+    [
+      ["투루파킹 삼성동빌딩점 주차장", "5,000원"],
+      ["투루파킹 삼성역WeWork 주차장", "6,000원"],
+      ["투루파킹 LG트윈텔2점 주차장", "6,000원"],
+    ].every(([name, rate]) => html.includes(name) && html.includes(rate)) &&
+      /class=["'][^"']*\bparking-list\b[^"']*["']/i.test(html),
+  ],
+  [
+    "secure venue map link only",
+    externalLinkTags.length === 1 &&
       externalLinkTags.every((tag) => /\btarget=["']_blank["']/i.test(tag) && /\brel=["']noopener["']/i.test(tag)) &&
-      parkingLinkTag.includes(`href="${parkingSearchUrl}"`) &&
-      /<a\b[^>]*class=["'][^"']*\bparking-link\b[^"']*["'][^>]*>[\s\S]*?인근 주차장 확인하기[\s\S]*?<\/a>/i.test(html),
+      !html.includes(parkingSearchUrl),
   ],
   [
-    "accessible parking link styling",
-    /\.map-link\s*,\s*\.parking-link\s*,\s*#copy-account-number\s*\{[^}]*\bmin-height\s*:\s*44px/i.test(css) &&
-      /\.parking-link\s*\{[^}]*\bbackground\s*:\s*var\(--platinum\)[^}]*\bcolor\s*:\s*var\(--navy\)/i.test(css) &&
-      /\.parking-link:focus-visible\s*\{[^}]*\boutline\s*:/i.test(css),
+    "accessible static parking list styling",
+    /\.map-link\s*,\s*#copy-account-number\s*\{[^}]*\bmin-height\s*:\s*44px/i.test(css) &&
+      /\.parking-list\s*\{[^}]*\bmargin\s*:/i.test(css) &&
+      /\.parking-list\s+dd\s*\{[^}]*\bwhite-space\s*:\s*nowrap/i.test(css),
   ],
   ["valid event-details nesting", !/<p>[^<]*<span[^>]*>[^<]*<\/span><strong>[\s\S]*?<\/p><\/strong>/i.test(html)],
 ];
