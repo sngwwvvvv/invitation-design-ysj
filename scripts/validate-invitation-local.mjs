@@ -100,6 +100,14 @@ const checks = [
       /\.parking-list\s*\{[^}]*\bmargin\s*:/i.test(css) &&
       /\.parking-list\s+dd\s*\{[^}]*\bwhite-space\s*:\s*nowrap/i.test(css),
   ],
+  [
+    "left aligned parking copy",
+    /\.parking-warning\s*,\s*\.parking-detail\s*\{[^}]*\btext-align\s*:\s*left/i.test(css),
+  ],
+  [
+    "white parking notice label",
+    /\.parking-notice\s+h3\s*\{[^}]*\bbackground\s*:\s*var\(--platinum\)[^}]*\bcolor\s*:\s*var\(--navy\)/i.test(css),
+  ],
   ["valid event-details nesting", !/<p>[^<]*<span[^>]*>[^<]*<\/span><strong>[\s\S]*?<\/p><\/strong>/i.test(html)],
 ];
 

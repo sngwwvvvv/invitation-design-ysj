@@ -53,8 +53,8 @@ address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; 
 .map-link, #copy-account-number { display: flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 8px; font-size: calc(1.0625rem + 2px); font-weight: 700; }
 .map-link { background: var(--green); color: var(--platinum); text-decoration: none; }
 .parking-notice { margin: 18px 0 0; padding: 18px 14px; background: var(--navy); color: var(--platinum); text-align: center; }
-.parking-notice h3 { margin: 0 0 10px; padding: 0; border: 0; color: var(--platinum); font-size: 1.125rem; }
-.parking-warning, .parking-detail { margin: 0; }
+.parking-notice h3 { display: inline-block; margin: 0 0 12px; padding: 3px 12px; border: 0; border-radius: 4px; background: var(--platinum); color: var(--navy); font-size: 1.125rem; }
+.parking-warning, .parking-detail { margin: 0; text-align: left; }
 .parking-warning { font-size: calc(1rem + 1px); }
 .parking-detail { margin-top: 8px; font-size: calc(.875rem + 1px); line-height: 1.6; }
 .parking-list { margin: 16px 0 0; text-align: left; }
