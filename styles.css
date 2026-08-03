@@ -18,46 +18,12 @@ body {
 }
 
 .invitation-shell { width: 100%; max-width: 640px; margin: 0 auto; overflow: hidden; background: var(--platinum); }
-#intro-section { position: relative; overflow: hidden; padding: 72px 48px 76px; background: var(--slate); }
-#intro-section::before {
-  position: absolute;
-  inset: 4px;
-  content: "";
-  background:
-    linear-gradient(180deg, rgba(240, 244, 248, .82) 0%, rgba(240, 244, 248, .58) 100%),
-    url("img/reflection_background.png") center / cover no-repeat;
-  filter: brightness(1.12) saturate(.78);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .92),
-    inset 0 -36px 60px rgba(10, 45, 84, .17),
-    inset 12px 0 24px rgba(10, 45, 84, .06),
-    0 6px 18px rgba(10, 45, 84, .32);
-}
-#intro-section::after {
-  position: absolute;
-  inset: 4px;
-  z-index: 1;
-  border: 1px solid rgba(10, 45, 84, .14);
-  content: "";
-  pointer-events: none;
-}
-.intro-content { position: relative; z-index: 2; text-align: center; }
-.brand-logo { display: block; width: min(200px, 70%); height: auto; margin: 0 auto 28px; }
-h1, h2, h3, p { margin-top: 0; }
-h1 { margin-bottom: 26px; color: var(--navy); font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 800; letter-spacing: -.04em; line-height: 1.45; }
+#intro-section, #intro-section picture { display: block; width: 100%; }
+#intro-section { background: var(--slate); }
+.intro-section-image { display: block; width: 100%; height: auto; }
+h2, h3, p { margin-top: 0; }
 h2 { margin-bottom: 28px; font-size: 1.75rem; line-height: 1.3; font-weight: 800; }
 h3 { margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(10, 45, 84, .16); color: var(--navy); font-size: 1.125rem; font-weight: 800; }
-.career-icon { display: inline-block; margin-right: .12em; font-size: .86em; line-height: 1; vertical-align: -.04em; filter: saturate(.72); }
-#event-details { margin: 0 auto 26px; text-align: center; }
-#event-details p { margin: 0; }
-.event-pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; background: var(--slate); color: var(--platinum); font-size: calc(.75rem + 2px); letter-spacing: -.03em; line-height: 1.4; white-space: nowrap; }
-.event-icon { color: var(--green); }
-.invitation-message { max-width: 480px; margin: 0 auto; padding: 12px 4px 8px; border: 0; background: transparent; box-shadow: none; color: var(--navy); font-size: calc(1rem + 2px); font-weight: 700; letter-spacing: -.01em; line-height: 2; text-align: left; text-shadow: 0 1px 0 rgba(240, 244, 248, .5); }
-.invitation-copy { text-align: left; }
-.invitation-copy p { margin: 0 0 20px; }
-.invitation-copy p:last-child { margin-bottom: 0; }
-.invitation-signature { margin: 26px 0 0; color: var(--navy); font-size: calc(.9375rem); line-height: 1.8; text-align: right; }
-.invitation-signature span { display: block; }
 .content-section, .account-section { padding: 56px 40px; }
 .content-section { background: var(--platinum); }
 .profile-section { padding-top: 40px; }
@@ -105,14 +71,6 @@ address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; 
 #copy-account-number:focus-visible { outline: 3px solid var(--green); outline-offset: -3px; }
 
 @media (max-width: 480px) {
-  #intro-section { padding: 56px 24px 64px; }
-  #intro-section::before {
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, .92),
-      inset 0 -28px 48px rgba(10, 45, 84, .15),
-      inset 8px 0 18px rgba(10, 45, 84, .05),
-      0 4px 12px rgba(10, 45, 84, .28);
-  }
   .content-section, .account-section { padding: 44px 24px; }
   .profile-section { padding-top: 32px; }
   .directions::before, .account-section::before { right: 24px; left: 24px; }
@@ -120,12 +78,10 @@ address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; 
   .profile-grid { grid-template-columns: 1fr; gap: 20px; }
   .portrait { width: min(180px, 100%); margin: 0 auto; }
   .career-list { font-size: calc(.875rem + 2px); }
-  .invitation-message { padding: 22px 20px 20px; font-size: calc(.9375rem + 2px); }
   .account-card dl > div:nth-child(2) dd { flex-shrink: 0; white-space: nowrap; }
 }
 
 @media (max-width: 639px) {
-  .invitation-message { font-size: calc(1rem); }
   .career-list { font-size: calc(.9375rem); }
   .account-card { padding: 14px 16px; border-radius: 12px; }
   .account-message { font-size: calc(.9375rem + 1px); }

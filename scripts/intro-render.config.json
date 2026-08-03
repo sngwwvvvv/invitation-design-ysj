@@ -1,0 +1,6 @@
+{
+  "browser": {
+    "launchOptions": { "channel": "msedge" },
+    "contextOptions": { "deviceScaleFactor": 2 }
+  }
+}
