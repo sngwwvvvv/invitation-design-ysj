@@ -32,7 +32,9 @@ h3 { margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(10,
 .portrait, .map-image { display: block; width: 100%; height: auto; }
 .portrait { object-fit: contain; }
 .eyebrow { margin-bottom: 8px; color: var(--blue); font-weight: 700; }
-.career-list { margin: 0; padding-left: 18px; font-size: calc(.9375rem + 2px + 1pt); line-height: 1.7; font-weight: 500;}
+.career-copy { min-width: 0; }
+.career-list { margin: 0; padding-left: 18px; font-size: calc(.9375rem + 2px + 1pt); line-height: 1.7; font-weight: 700; }
+.career-list li { overflow-wrap: anywhere; }
 .career-list li::marker { font-size: .72em; }
 .directions, .account-section {
   position: relative;
