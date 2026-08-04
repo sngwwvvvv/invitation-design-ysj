@@ -28,13 +28,17 @@ h3 { margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(10,
 .content-section { background: var(--platinum); }
 .profile-section { padding-top: 40px; }
 .profile-heading { margin: 0 -40px 32px; padding: 10px 40px; background: var(--navy); color: var(--platinum); font-size: 1.25rem; text-align: left; }
-.profile-grid { display: grid; grid-template-columns: minmax(120px, .85fr) minmax(0, 1.35fr); gap: 24px; align-items: center; }
+.profile-grid { display: grid; grid-template-columns: minmax(120px, .75fr) minmax(0, 1.45fr); gap: 24px; align-items: center; }
 .portrait, .map-image { display: block; width: 100%; height: auto; }
 .portrait { object-fit: contain; }
 .eyebrow { margin-bottom: 8px; color: var(--blue); font-weight: 700; }
-.career-list { margin: 0; padding-left: 18px; font-size: calc(.9375rem + 2px); line-height: 1.7; font-weight: 500;}
+.career-list { margin: 0; padding-left: 18px; font-size: calc(.9375rem + 2px + 1pt); line-height: 1.7; font-weight: 500;}
 .career-list li::marker { font-size: .72em; }
-.directions, .account-section { position: relative; }
+.directions, .account-section {
+  position: relative;
+  padding-top: 50.4px;
+  padding-bottom: 50.4px;
+}
 .directions { background: var(--platinum); color: var(--navy); }
 .directions::before, .account-section::before {
   position: absolute;
@@ -53,7 +57,6 @@ address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; 
 .map-link, #copy-account-number { display: flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 8px; font-size: calc(1.0625rem + 2px); font-weight: 700; }
 .map-link { background: var(--green); color: var(--platinum); text-decoration: none; }
 .parking-notice { margin: 18px 0 0; padding: 18px 14px; background: var(--navy); color: var(--platinum); text-align: center; }
-.parking-notice h3 { display: inline-block; margin: 0 0 12px; padding: 3px 12px; border: 0; border-radius: 4px; background: var(--platinum); color: var(--navy); font-size: 1.125rem; }
 .parking-warning, .parking-detail { margin: 0; text-align: left; }
 .parking-warning { font-size: calc(1rem + 1px); }
 .parking-detail { margin-top: 8px; font-size: calc(.875rem + 1px); line-height: 1.6; }
@@ -65,36 +68,31 @@ address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; 
 .parking-list dd { flex-shrink: 0; margin: 0; font-size: .9375rem; font-weight: 700; line-height: 1.45; white-space: nowrap; }
 .parking-footnote { margin: 10px 0 0; color: rgba(240, 244, 248, .8); font-size: .75rem; line-height: 1.4; }
 .account-section { background: var(--platinum); color: var(--navy); }
-.account-card { padding: 28px 20px; border: 1px solid var(--blue); border-radius: 16px; background: var(--platinum); }
-.account-message { margin-bottom: 0; text-align: center; color: var(--navy); font-size: calc(1.1rem + 1px); font-weight:500;}
-.account-card dl { margin: 24px 0; padding-top: 20px; border-top: 1px solid var(--blue); font-size: 1.15rem; }
-.account-card dl > div { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; }
-.account-card dd { margin: 0; font-weight: 500; }
-.account-card dl > div:nth-child(2) dd { color: var(--navy); }
+.account-card { padding: 16px 20px 8px; border: 1px solid var(--blue); border-radius: 16px; background: var(--platinum); }
+.account-message { margin-bottom: 0; color: var(--navy); font-size: 1rem; font-weight: 500; line-height: 1.4; text-align: center; }
+.account-info { margin: 10px 0; padding-top: 8px; border-top: 1px solid var(--blue); font-size: 1rem; font-weight: 500; text-align: center; white-space: nowrap; }
 #copy-account-number { width: 100%; border: 0; background: var(--navy); color: var(--platinum); cursor: pointer; }
-#copy-status { min-height: 1.7em; margin: 12px 0 0; color: var(--navy); text-align: center; }
 .map-link:focus-visible { outline: 3px solid var(--navy); outline-offset: -3px; }
 #copy-account-number:focus-visible { outline: 3px solid var(--green); outline-offset: -3px; }
 
 @media (max-width: 480px) {
   .content-section, .account-section { padding: 44px 24px; }
+  .directions, .account-section {
+    padding-top: 39.6px;
+    padding-bottom: 39.6px;
+  }
   .profile-section { padding-top: 32px; }
   .directions::before, .account-section::before { right: 24px; left: 24px; }
   .profile-heading { margin-right: -24px; margin-bottom: 24px; margin-left: -24px; padding: 9px 24px; }
   .profile-grid { grid-template-columns: 1fr; gap: 20px; }
   .portrait { width: min(180px, 100%); margin: 0 auto; }
-  .career-list { font-size: calc(.875rem + 2px); }
-  .account-card dl > div:nth-child(2) dd { flex-shrink: 0; white-space: nowrap; }
+  .career-list { font-size: calc(.875rem + 2px + 1pt); }
 }
 
 @media (max-width: 639px) {
-  .career-list { font-size: calc(.9375rem); }
-  .account-card { padding: 14px 16px; border-radius: 12px; }
-  .account-message { font-size: calc(.9375rem + 1px); }
-  .account-card dl { margin: 12px 0; padding-top: 10px; font-size: 1rem; }
-  .account-card dl > div { padding: 4px 0; }
+  .career-list { font-size: calc(.9375rem + 1pt); }
+  .account-card { padding: 12px 16px 6px; border-radius: 12px; }
+  .account-message { font-size: 10pt; line-height: 1.4; }
+  .account-info { margin: 6px 0; padding-top: 5px; font-size: .875rem; }
   #copy-account-number { min-height: 36px; font-size: 1rem; }
-  #copy-status { min-height: 0; margin-top: 6px; font-size: .8125rem; line-height: 1.5; }
-  #copy-status:empty { display: none; }
-  .account-card dl > div:nth-child(2) dd { flex-shrink: 0; white-space: nowrap; }
 }
