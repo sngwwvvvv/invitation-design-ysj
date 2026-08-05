@@ -64,7 +64,7 @@ address { margin-bottom: 16px; font-size: calc(1rem + 2px); font-style: normal; 
 .parking-list-header span:last-child { flex-shrink: 0; }
 .parking-list { margin: 0; text-align: left; }
 .parking-list > div { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 8px 0; border-top: 1px solid rgba(240, 244, 248, .35); }
-.parking-list dt { min-width: 0; font-size: calc(.9375rem + .5pt); font-weight: 700; line-height: 1.45; }
+.parking-list dt { min-width: 0; font-size: calc(.9375rem + 1pt); font-weight: 700; line-height: 1.45; }
 .parking-list dd { flex-shrink: 0; margin: 0; font-size: .9375rem; font-weight: 700; line-height: 1.45; white-space: nowrap; }
 .parking-footnote { margin: 10px 0 0; color: rgba(240, 244, 248, .8); font-size: .75rem; line-height: 1.4; }
 .account-section { background: var(--platinum); color: var(--navy); }

@@ -112,8 +112,8 @@ const checks = [
       !/\.parking-warning|\.parking-detail/i.test(css),
   ],
   [
-    "bold parking names with half-point increase",
-    /\.parking-list\s+dt\s*\{[^}]*\bfont-size\s*:\s*calc\(\.9375rem\s*\+\s*\.5pt\)[^}]*\bfont-weight\s*:\s*700/i.test(css),
+    "bold parking names with one-point increase",
+    /\.parking-list\s+dt\s*\{[^}]*\bfont-size\s*:\s*calc\(\.9375rem\s*\+\s*1pt\)[^}]*\bfont-weight\s*:\s*700/i.test(css),
   ],
   [
     "white parking notice label",

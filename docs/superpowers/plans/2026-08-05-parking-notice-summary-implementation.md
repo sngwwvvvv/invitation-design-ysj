@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Replace the two parking notice paragraphs with one concise paragraph and make parking-list names 0.5pt larger and bold.
+**Goal:** Replace the two parking notice paragraphs with one concise paragraph and make parking-list names 1pt larger and bold.
 
 **Architecture:** Keep the existing `.parking-notice` panel and parking list structure. Update only the parking notice markup, its obsolete selectors, the `dt` typography, and the local contract checks.
 
@@ -12,7 +12,7 @@
 
 - Preserve the existing parking names, rates, footnote, map link, colors, and responsive layout.
 - The replacement markup must be exactly `<p>주차장 안내(당건물 주차불가)</p>` with no added class.
-- Use `calc(.9375rem + .5pt)` and `font-weight: 700` for `.parking-list dt`.
+- Use `calc(.9375rem + 1pt)` and `font-weight: 700` for `.parking-list dt`.
 - Do not modify unrelated working-tree changes.
 
 ---
@@ -36,7 +36,7 @@
 - [ ] Remove `.parking-warning` and `.parking-detail` CSS rules, add `.parking-notice > p { margin: 0; }`, and change the `dt` rule to:
 
 ```css
-.parking-list dt { min-width: 0; font-size: calc(.9375rem + .5pt); font-weight: 700; line-height: 1.45; }
+.parking-list dt { min-width: 0; font-size: calc(.9375rem + 1pt); font-weight: 700; line-height: 1.45; }
 ```
 
 - [ ] Confirm the existing list header, three rows, footnote, and map link remain byte-for-byte unchanged outside the targeted block.
