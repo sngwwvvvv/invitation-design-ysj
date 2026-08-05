@@ -7,7 +7,8 @@ Improve the readability of the intro section's date and time notice while preser
 ## Scope
 
 - Keep the current intro composition, copy, background, logo, message, signature, and responsive image breakpoints.
-- Change only the event pill markup and styling in `scripts/intro-section-stage.html`, plus generated image dimensions and focused validation where required.
+- Change the event date from August 12 to August 19, 2026. August 19, 2026 is a Wednesday, so the exact notice is `2026년 8월 19일 (수) · 오전 10시 ~ 오후 9시`.
+- Change only the event pill content, markup, and styling in `scripts/intro-section-stage.html`, plus generated assets, production alternative text, image dimensions, and focused validation where required.
 - Regenerate all three intro PNG assets after changing the stage.
 - Do not restore the old live intro implementation or replace the production `<picture>` with live HTML.
 
@@ -23,7 +24,7 @@ Give the event pill and invitation message one shared content width at every ren
 
 Center both elements within the intro stage. Their left and right edges must match, and the event pill's right edge must also match the invitation signature's right edge.
 
-Represent the date, separator, and time as distinct inline elements so wrapping is intentional rather than browser-dependent. At 360px, hide the separator and stack the date above the time. At 480px and 640px, keep the complete notice on one line with the separator visible.
+Represent the date, separator, and time as distinct inline elements so wrapping is intentional rather than browser-dependent. At 360px, hide the separator and render `2026년 8월 19일 (수)` above `오전 10시 ~ 오후 9시`. At 480px and 640px, keep `2026년 8월 19일 (수) · 오전 10시 ~ 오후 9시` on one line with the separator visible.
 
 The event icon remains beside the notice and is vertically centered against either the two-line 360px copy or the one-line wider copy.
 
@@ -51,7 +52,8 @@ Keep the existing pill radius, vertical rhythm, and bottom spacing unless the la
 1. Modify the event markup and stage-only CSS in `scripts/intro-section-stage.html`.
 2. Render `img/intro-section-360.png`, `img/intro-section-480.png`, and `img/intro-section-640.png` with the existing Playwright render script and 2x device scale factor.
 3. Read the new PNG dimensions and update the intrinsic `height` values in `index.html` if any rendered height changed.
-4. Keep the existing production source-selection boundaries: 360 image through 419px, 480 image from 420px through 559px, and 640 image from 560px upward.
+4. Update the production image alternative text and focused validator from August 12 to August 19 so their text matches the rendered notice.
+5. Keep the existing production source-selection boundaries: 360 image through 419px, 480 image from 420px through 559px, and 640 image from 560px upward.
 
 ## Verification
 
@@ -71,7 +73,7 @@ Run the focused responsive-intro validator and browser layout checks after regen
 
 ## Non-goals
 
-- No changes to event text or event time.
+- No event-content changes beyond moving the date from August 12 to August 19; the Wednesday label and event time remain as specified.
 - No changes to the intro message, signature, logo, background treatment, or outer spacing.
 - No changes to profile, directions, parking, or account sections.
 - No return to a live production HTML intro.
