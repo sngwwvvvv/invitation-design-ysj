@@ -11,15 +11,17 @@ async (page) => {
 
   const result = await page.evaluate(() => {
     const intro = document.querySelector("#intro-section");
+    const details = document.querySelector("#mms-details");
     const profile = document.querySelector(".profile-section");
     const transit = document.querySelector(".transit");
     const parking = document.querySelector(".parking-notice");
     const account = document.querySelector(".account-section");
     const accountInfo = document.querySelector(".account-info");
-    if (![intro, profile, transit, parking, account, accountInfo].every(Boolean)) return { markup: false };
+    if (![intro, details, profile, transit, parking, account, accountInfo].every(Boolean)) return { markup: false };
 
     const introBox = intro.getBoundingClientRect();
     const profileBox = profile.getBoundingClientRect();
+    const detailsBox = details.getBoundingClientRect();
     const transitBox = transit.getBoundingClientRect();
     const parkingBox = parking.getBoundingClientRect();
     const accountBox = account.getBoundingClientRect();
@@ -30,6 +32,8 @@ async (page) => {
       documentWidth: document.documentElement.scrollWidth,
       hasMapLink: Boolean(document.querySelector(".map-link")),
       hasCopyButton: Boolean(document.querySelector("#copy-account-number")),
+      detailsStartsAfterIntro: Math.abs(detailsBox.top - profileBox.top) <= 0.5,
+      detailsContainsIntro: details.contains(intro),
       mapControlGap: parkingBox.top - transitBox.bottom,
       accountControlGap: Number.parseFloat(infoStyle.marginBottom),
       introHeight: Math.ceil(introBox.bottom) - Math.floor(introBox.top),
@@ -42,6 +46,8 @@ async (page) => {
     && result.documentWidth === 640
     && !result.hasMapLink
     && !result.hasCopyButton
+    && result.detailsStartsAfterIntro
+    && !result.detailsContainsIntro
     && Math.abs(result.mapControlGap) <= 0.5
     && result.accountControlGap === 0
     && result.introHeight > 0

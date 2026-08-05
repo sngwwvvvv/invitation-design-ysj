@@ -35,15 +35,17 @@ async (page) => {
     ["mms_img/mms_01_intro.jpg", "jpeg"],
   ]);
 
-  await page.evaluate(() => document.querySelector(".profile-section").scrollIntoView({ block: "start", inline: "nearest" }));
-  const detailsBox = await page.evaluate(() => {
-    const profile = document.querySelector(".profile-section").getBoundingClientRect();
-    const account = document.querySelector(".account-section").getBoundingClientRect();
-    return { x: 0, y: Math.floor(profile.top), width: 640, height: Math.ceil(account.bottom) - Math.floor(profile.top) };
-  });
-  await capture(detailsBox, [
-    ["mms_img/mms_02_details.png", "png"],
-    ["mms_img/mms_02_details.jpg", "jpeg"],
-  ]);
+  const details = page.locator("#mms-details");
+  const detailsBox = await details.boundingBox();
+  for (const [path, type] of [["mms_img/mms_02_details.png", "png"], ["mms_img/mms_02_details.jpg", "jpeg"]]) {
+    await details.screenshot({
+      path,
+      type,
+      ...(type === "jpeg" ? { quality: 90 } : {}),
+      animations: "disabled",
+      caret: "hide",
+      scale: "css",
+    });
+  }
   console.log(JSON.stringify({ intro: introBox, details: detailsBox }));
 }
