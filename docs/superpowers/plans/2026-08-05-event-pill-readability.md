@@ -196,6 +196,7 @@ Replace the existing `.event-pill` and `.event-icon` rules with:
   line-height:1.4;
 }
 .event-copy { display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; }
+.event-separator { margin:0 .18em; }
 .event-icon { color:var(--green); }
 ```
 
