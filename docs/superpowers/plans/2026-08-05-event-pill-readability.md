@@ -52,8 +52,7 @@ Create `scripts/verify-event-pill-layout.playwright.js` with this complete funct
 
 ```js
 async (page) => {
-  const base = new URL(page.url());
-  base.search = "";
+  const base = page.url().split("?")[0];
   const contracts = {
     360: { contentWidth: 312, fontSize: "15px", lineCount: 2, separatorVisible: false },
     480: { contentWidth: 408, fontSize: "16px", lineCount: 1, separatorVisible: true },
@@ -63,9 +62,7 @@ async (page) => {
 
   for (const [widthText, contract] of Object.entries(contracts)) {
     const width = Number(widthText);
-    const url = new URL(base);
-    url.searchParams.set("width", widthText);
-    await page.goto(url.href, { waitUntil: "load" });
+    await page.goto(`${base}?width=${widthText}`, { waitUntil: "load" });
 
     const result = await page.locator("#intro-stage").evaluate((stage, expected) => {
       const pill = stage.querySelector(".event-pill");
