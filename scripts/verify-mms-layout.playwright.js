@@ -13,15 +13,17 @@ async (page) => {
     const intro = document.querySelector("#intro-section");
     const details = document.querySelector("#mms-details");
     const profile = document.querySelector(".profile-section");
+    const profileHeading = document.querySelector(".profile-heading");
     const transit = document.querySelector(".transit");
     const parking = document.querySelector(".parking-notice");
     const account = document.querySelector(".account-section");
     const accountInfo = document.querySelector(".account-info");
-    if (![intro, details, profile, transit, parking, account, accountInfo].every(Boolean)) return { markup: false };
+    if (![intro, details, profile, profileHeading, transit, parking, account, accountInfo].every(Boolean)) return { markup: false };
 
     const introBox = intro.getBoundingClientRect();
     const profileBox = profile.getBoundingClientRect();
     const detailsBox = details.getBoundingClientRect();
+    const profileHeadingBox = profileHeading.getBoundingClientRect();
     const transitBox = transit.getBoundingClientRect();
     const parkingBox = parking.getBoundingClientRect();
     const accountBox = account.getBoundingClientRect();
@@ -34,6 +36,7 @@ async (page) => {
       hasCopyButton: Boolean(document.querySelector("#copy-account-number")),
       detailsStartsAfterIntro: Math.abs(detailsBox.top - profileBox.top) <= 0.5,
       detailsContainsIntro: details.contains(intro),
+      titleStartsAtDetailsTop: Math.abs(profileHeadingBox.top - detailsBox.top) <= 0.5,
       mapControlGap: parkingBox.top - transitBox.bottom,
       accountControlGap: Number.parseFloat(infoStyle.marginBottom),
       introHeight: Math.ceil(introBox.bottom) - Math.floor(introBox.top),
@@ -48,6 +51,7 @@ async (page) => {
     && !result.hasCopyButton
     && result.detailsStartsAfterIntro
     && !result.detailsContainsIntro
+    && result.titleStartsAtDetailsTop
     && Math.abs(result.mapControlGap) <= 0.5
     && result.accountControlGap === 0
     && result.introHeight > 0
