@@ -29,7 +29,7 @@ function pictureMarkup() {
   <picture>
     <source media="(max-width: 419px)" srcset="img/intro-section-360.png" width="720" height="${images[360].height}">
     <source media="(max-width: 559px)" srcset="img/intro-section-480.png" width="960" height="${images[480].height}">
-    <img class="intro-section-image" src="img/intro-section-640.png" width="1280" height="${images[640].height}" alt="호연회계법인 윤성중 부대표의 2026년 8월 12일 개업 초대 인사말" fetchpriority="high" decoding="async">
+    <img class="intro-section-image" src="img/intro-section-640.png" width="1280" height="${images[640].height}" alt="호연회계법인 윤성중 부대표의 2026년 8월 19일 개업 초대 인사말" fetchpriority="high" decoding="async">
   </picture>
 </section>`;
 }
@@ -54,7 +54,7 @@ const checks = [
   ["keeps one responsive picture in intro", (intro.match(/<picture\b/gi) ?? []).length === 1],
   ["removes live intro children", !/(invitation-message|invitation-title|event-details|brand-logo)/i.test(intro)],
   ["labels the image purpose", /aria-label=["']호연회계법인 윤성중 부대표 개업 초대 인사말["']/i.test(intro)],
-  ["provides concise image alt text", /alt=["']호연회계법인 윤성중 부대표의 2026년 8월 12일 개업 초대 인사말["']/i.test(intro)],
+  ["provides concise image alt text", /alt=["']호연회계법인 윤성중 부대표의 2026년 8월 19일 개업 초대 인사말["']/i.test(intro)],
   ["prioritizes the intro image", /fetchpriority=["']high["']/i.test(intro) && /decoding=["']async["']/i.test(intro) && !/loading=["']lazy["']/i.test(intro)],
   ["sizes the responsive image", /\.intro-section-image\s*\{[^}]*width\s*:\s*100%[^}]*height\s*:\s*auto/i.test(css)],
   ["removes obsolete intro pseudo-elements", !/#intro-section::(?:before|after)/i.test(css)],
