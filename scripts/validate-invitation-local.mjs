@@ -72,9 +72,9 @@ const checks = [
   ["directions and account use platinum panels", /\.directions\s*\{[^}]*\bbackground\s*:\s*var\(--platinum\)/i.test(css) && /\.directions\s*\{[^}]*\bcolor\s*:\s*var\(--navy\)/i.test(css) && /\.directions\s+h2\s*\{[^}]*\bcolor\s*:\s*var\(--navy\)/i.test(css) && /\.account-section\s*\{[^}]*\bbackground\s*:\s*var\(--platinum\)/i.test(css) && /\.account-section\s*\{[^}]*\bcolor\s*:\s*var\(--navy\)/i.test(css) && /\.account-card\s*\{[^}]*\bbackground\s*:\s*var\(--platinum\)/i.test(css) && /\.map-link\s*\{[^}]*\bbackground\s*:\s*var\(--green\)/i.test(css) && /\.parking-notice\s*\{[^}]*\bbackground\s*:\s*var\(--navy\)/i.test(css) && /#copy-account-number\s*\{[^}]*\bbackground\s*:\s*var\(--navy\)/i.test(css)],
   [
     "static parking notice copy",
-    html.includes("주차 안내") &&
-      html.includes("본 건물에는 주차가 불가합니다.") &&
-      html.includes("아래 인근 유료주차장을 이용해 주세요.") &&
+    (html.match(/<p>주차장 안내\(당건물 주차불가\)<\/p>/g) ?? []).length === 1 &&
+      !html.includes("parking-warning") &&
+      !html.includes("parking-detail") &&
       html.includes("※ 요금은 주차장 사정에 따라 변동될 수 있습니다.") &&
       !html.includes("[주차 안내가 확정되면 이곳에 표시됩니다]") &&
       !html.includes("인근 주차장 확인하기"),
@@ -107,8 +107,13 @@ const checks = [
       /\.parking-list\s+dd\s*\{[^}]*\bwhite-space\s*:\s*nowrap/i.test(css),
   ],
   [
-    "left aligned parking copy",
-    /\.parking-warning\s*,\s*\.parking-detail\s*\{[^}]*\btext-align\s*:\s*left/i.test(css),
+    "compact parking notice copy styling",
+    /\.parking-notice\s*>\s*p\s*\{[^}]*\bmargin\s*:\s*0/i.test(css) &&
+      !/\.parking-warning|\.parking-detail/i.test(css),
+  ],
+  [
+    "bold parking names with half-point increase",
+    /\.parking-list\s+dt\s*\{[^}]*\bfont-size\s*:\s*calc\(\.9375rem\s*\+\s*\.5pt\)[^}]*\bfont-weight\s*:\s*700/i.test(css),
   ],
   [
     "white parking notice label",
