@@ -36,6 +36,21 @@
     #intro-stage[data-width="640"] .intro-title { font-size:32px; }
     #intro-stage[data-width="640"] .event-pill { font-size:16px; }
     #intro-stage[data-width="640"] .invitation-message { font-size:18px; }
+    #intro-stage[data-width="1080"] {
+      --intro-copy-width:760px;
+      display:flex;
+      width:1080px;
+      height:1440px;
+      align-items:center;
+      padding:88px 110px;
+    }
+    #intro-stage[data-width="1080"] .intro-content { width:100%; }
+    #intro-stage[data-width="1080"] .brand-logo { width:300px; margin-bottom:36px; }
+    #intro-stage[data-width="1080"] .intro-title { margin-bottom:34px; font-size:46px; }
+    #intro-stage[data-width="1080"] .event-pill { margin-bottom:34px; padding:12px 18px; font-size:23px; }
+    #intro-stage[data-width="1080"] .invitation-message { font-size:22px; line-height:1.72; }
+    #intro-stage[data-width="1080"] .invitation-message p { margin-bottom:18px; }
+    #intro-stage[data-width="1080"] .invitation-signature { margin-top:22px !important; font-size:20px; line-height:1.55; }
     template { display:none; }
   </style>
 </head>
@@ -87,11 +102,12 @@
     </div>
   </template>
   <script>
-    const width = [360, 480, 640].includes(Number(new URLSearchParams(location.search).get('width')))
-      ? Number(new URLSearchParams(location.search).get('width')) : 640;
+    const requestedWidth = Number(new URLSearchParams(location.search).get('width'));
+    const width = [360, 480, 640, 1080].includes(requestedWidth) ? requestedWidth : 640;
+    const copyWidth = width === 1080 ? 640 : width;
     const stage = document.querySelector('#intro-stage');
     stage.dataset.width = String(width);
-    stage.append(document.querySelector(`#copy-${width}`).content.cloneNode(true));
+    stage.append(document.querySelector(`#copy-${copyWidth}`).content.cloneNode(true));
   </script>
 </body>
 </html>

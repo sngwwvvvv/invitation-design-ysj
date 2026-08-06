@@ -11,6 +11,38 @@
     .mms-design .parking-notice { margin-top: 0; }
     .mms-design .account-info { margin-bottom: 0; }
     .mms-design #mms-details .profile-section { padding-top: 0; }
+    @media (min-width:1080px) {
+      .mms-design .invitation-shell { width:1080px; max-width:1080px; margin:0; }
+      .mms-design #mms-details {
+        display:grid;
+        width:1080px;
+        height:1440px;
+        grid-template-rows:456px 814px 170px;
+      }
+      .mms-design #mms-details > section { min-width:0; min-height:0; }
+      .mms-design #mms-details .profile-section { padding:0 72px 24px; }
+      .mms-design #mms-details .profile-heading {
+        margin:0 -72px 20px;
+        padding:10px 72px;
+        font-size:1.5rem;
+      }
+      .mms-design #mms-details .profile-grid { grid-template-columns:220px minmax(0,1fr); gap:40px; }
+      .mms-design #mms-details .portrait { width:220px; }
+      .mms-design #mms-details .career-list { font-size:18px; line-height:1.55; }
+      .mms-design #mms-details .directions { padding:24px 72px; }
+      .mms-design #mms-details .directions::before,
+      .mms-design #mms-details .account-section::before { right:72px; left:72px; }
+      .mms-design #mms-details .directions h2 { margin-bottom:18px; font-size:28px; }
+      .mms-design #mms-details .map-image { width:500px; margin:0 auto 14px; }
+      .mms-design #mms-details address { margin-bottom:10px; font-size:18px; }
+      .mms-design #mms-details .transit { margin-bottom:0; font-size:18px; }
+      .mms-design #mms-details .parking-notice { margin-top:0; padding:12px 14px; }
+      .mms-design #mms-details .parking-list-header { margin-top:10px; }
+      .mms-design #mms-details .parking-list > div { padding:6px 0; }
+      .mms-design #mms-details .parking-footnote { margin-top:8px; }
+      .mms-design #mms-details .account-section { padding:22px 72px; }
+      .mms-design #mms-details .account-card { padding:14px 20px 8px; }
+    }
   </style>
 </head>
 <body class="mms-design">

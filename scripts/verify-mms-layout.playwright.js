@@ -1,61 +1,77 @@
 async (page) => {
-  await page.setViewportSize({ width: 640, height: 1800 });
-  await page.reload({ waitUntil: "load" });
-  await page.evaluate(async () => {
+  const origin = page.url().split("/mms_design.html")[0];
+  await page.setViewportSize({ width: 1080, height: 1600 });
+
+  const ready = async () => page.evaluate(async () => {
     await document.fonts.ready;
-    await Promise.all([...document.images].map((image) => image.complete ? image.decode().catch(() => {}) : new Promise((resolve) => {
-      image.addEventListener("load", resolve, { once: true });
-      image.addEventListener("error", resolve, { once: true });
-    })));
+    await Promise.all([...document.images].map((image) => image.decode().catch(() => {})));
   });
+  const within = (outer, inner) => inner.left >= outer.left - 0.5
+    && inner.top >= outer.top - 0.5
+    && inner.right <= outer.right + 0.5
+    && inner.bottom <= outer.bottom + 0.5;
 
-  const result = await page.evaluate(() => {
-    const intro = document.querySelector("#intro-section");
-    const details = document.querySelector("#mms-details");
-    const profile = document.querySelector(".profile-section");
-    const profileHeading = document.querySelector(".profile-heading");
-    const transit = document.querySelector(".transit");
-    const parking = document.querySelector(".parking-notice");
-    const account = document.querySelector(".account-section");
-    const accountInfo = document.querySelector(".account-info");
-    if (![intro, details, profile, profileHeading, transit, parking, account, accountInfo].every(Boolean)) return { markup: false };
-
-    const introBox = intro.getBoundingClientRect();
-    const profileBox = profile.getBoundingClientRect();
-    const detailsBox = details.getBoundingClientRect();
-    const profileHeadingBox = profileHeading.getBoundingClientRect();
-    const transitBox = transit.getBoundingClientRect();
-    const parkingBox = parking.getBoundingClientRect();
-    const accountBox = account.getBoundingClientRect();
-    const infoStyle = getComputedStyle(accountInfo);
+  await page.goto(`${origin}/scripts/intro-section-stage.html?width=1080`, { waitUntil: "load" });
+  await ready();
+  const intro = await page.evaluate(() => {
+    const stage = document.querySelector("#intro-stage");
+    const content = document.querySelector(".intro-content");
+    const a = stage.getBoundingClientRect();
+    const b = content.getBoundingClientRect();
     return {
-      markup: true,
-      viewportWidth: innerWidth,
-      documentWidth: document.documentElement.scrollWidth,
-      hasMapLink: Boolean(document.querySelector(".map-link")),
-      hasCopyButton: Boolean(document.querySelector("#copy-account-number")),
-      detailsStartsAfterIntro: Math.abs(detailsBox.top - profileBox.top) <= 0.5,
-      detailsContainsIntro: details.contains(intro),
-      titleStartsAtDetailsTop: Math.abs(profileHeadingBox.top - detailsBox.top) <= 0.5,
-      mapControlGap: parkingBox.top - transitBox.bottom,
-      accountControlGap: Number.parseFloat(infoStyle.marginBottom),
-      introHeight: Math.ceil(introBox.bottom) - Math.floor(introBox.top),
-      detailsHeight: Math.ceil(accountBox.bottom) - Math.floor(profileBox.top),
+      stage: { left: a.left, top: a.top, right: a.right, bottom: a.bottom, width: a.width, height: a.height },
+      content: { left: b.left, top: b.top, right: b.right, bottom: b.bottom },
+      scrollWidth: stage.scrollWidth,
+      scrollHeight: stage.scrollHeight,
+      date: document.querySelector(".event-date")?.textContent,
     };
   });
 
-  const passed = result.markup
-    && result.viewportWidth === 640
-    && result.documentWidth === 640
-    && !result.hasMapLink
-    && !result.hasCopyButton
-    && result.detailsStartsAfterIntro
-    && !result.detailsContainsIntro
-    && result.titleStartsAtDetailsTop
-    && Math.abs(result.mapControlGap) <= 0.5
-    && result.accountControlGap === 0
-    && result.introHeight > 0
-    && result.detailsHeight > 0;
-  console.log(`${passed ? "PASS" : "FAIL"} MMS layout ${JSON.stringify(result)}`);
-  if (!passed) throw new Error("MMS layout contract failed.");
+  await page.goto(`${origin}/mms_design.html`, { waitUntil: "load" });
+  await ready();
+  const details = await page.evaluate(() => {
+    const root = document.querySelector("#mms-details");
+    const box = root.getBoundingClientRect();
+    const sectionData = [...root.children].map((section) => ({
+      className: section.className,
+      clientHeight: section.clientHeight,
+      scrollHeight: section.scrollHeight,
+      clientWidth: section.clientWidth,
+      scrollWidth: section.scrollWidth,
+    }));
+    const ratio = (selector) => {
+      const image = document.querySelector(selector);
+      const rect = image.getBoundingClientRect();
+      return { rendered: rect.width / rect.height, natural: image.naturalWidth / image.naturalHeight };
+    };
+    return {
+      box: { left: box.left, top: box.top, right: box.right, bottom: box.bottom, width: box.width, height: box.height },
+      scrollWidth: root.scrollWidth,
+      scrollHeight: root.scrollHeight,
+      sections: sectionData,
+      portrait: ratio(".portrait"),
+      map: ratio(".map-image"),
+      hasMapLink: Boolean(document.querySelector(".map-link")),
+      hasCopyButton: Boolean(document.querySelector("#copy-account-number")),
+    };
+  });
+
+  const ratioMatches = (value) => Math.abs(value.rendered - value.natural) <= 0.002;
+  const passed = intro.stage.width === 1080
+    && intro.stage.height === 1440
+    && intro.scrollWidth === 1080
+    && intro.scrollHeight === 1440
+    && within(intro.stage, intro.content)
+    && intro.date === "2026년 8월 19일 (수)"
+    && details.box.width === 1080
+    && details.box.height === 1440
+    && details.scrollWidth === 1080
+    && details.scrollHeight === 1440
+    && details.sections.every((section) => section.scrollHeight <= section.clientHeight + 1 && section.scrollWidth <= section.clientWidth + 1)
+    && ratioMatches(details.portrait)
+    && ratioMatches(details.map)
+    && !details.hasMapLink
+    && !details.hasCopyButton;
+  console.log(`${passed ? "PASS" : "FAIL"} SENS MMS layout ${JSON.stringify({ intro, details })}`);
+  if (!passed) throw new Error("SENS MMS layout contract failed.");
 }
