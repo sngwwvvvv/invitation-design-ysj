@@ -29,6 +29,7 @@ async (page) => {
         logoWidth: getComputedStyle(document.querySelector(".brand-logo")).width,
         titleSize: getComputedStyle(document.querySelector(".intro-title")).fontSize,
         eventSize: getComputedStyle(document.querySelector(".event-pill")).fontSize,
+        eventMarginBottom: getComputedStyle(document.querySelector(".event-pill")).marginBottom,
         bodySize: getComputedStyle(document.querySelector(".invitation-message")).fontSize,
         signatureSize: getComputedStyle(document.querySelector(".invitation-signature")).fontSize,
       },
@@ -76,6 +77,7 @@ async (page) => {
     && intro.styles.logoWidth === "340px"
     && intro.styles.titleSize === "52px"
     && intro.styles.eventSize === "26px"
+    && intro.styles.eventMarginBottom === "48px"
     && intro.styles.bodySize === "25px"
     && intro.styles.signatureSize === "23px"
     && intro.date === "2026년 8월 19일 (수)"
