@@ -1,0 +1,11 @@
+.invitation-shell { width: 971px; max-width: 971px; margin: 0; overflow: hidden; }
+#mms-details { width: 971px; }
+.profile-section { padding-top: 0; padding-bottom: 32px; }
+.content-section, .account-section { padding-left: 64px; padding-right: 64px; }
+.profile-heading { margin-left: -64px; margin-right: -64px; padding-left: 64px; padding-right: 64px; }
+.profile-grid { grid-template-columns: 220px minmax(0, 1fr); gap: 32px; }
+.portrait { width: 220px; }
+.directions, .account-section { padding-top: 32px; padding-bottom: 32px; }
+.map-image { width: 650px; max-width: 100%; margin-left: auto; margin-right: auto; }
+.directions::before, .account-section::before { right: 64px; left: 64px; }
+.account-card { padding-left: 28px; padding-right: 28px; }
