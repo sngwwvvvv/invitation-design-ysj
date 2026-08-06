@@ -24,6 +24,14 @@ async (page) => {
       scrollWidth: stage.scrollWidth,
       scrollHeight: stage.scrollHeight,
       date: document.querySelector(".event-date")?.textContent,
+      styles: {
+        copyWidth: getComputedStyle(stage).getPropertyValue("--intro-copy-width").trim(),
+        logoWidth: getComputedStyle(document.querySelector(".brand-logo")).width,
+        titleSize: getComputedStyle(document.querySelector(".intro-title")).fontSize,
+        eventSize: getComputedStyle(document.querySelector(".event-pill")).fontSize,
+        bodySize: getComputedStyle(document.querySelector(".invitation-message")).fontSize,
+        signatureSize: getComputedStyle(document.querySelector(".invitation-signature")).fontSize,
+      },
     };
   });
 
@@ -62,6 +70,14 @@ async (page) => {
     && intro.scrollWidth === 1080
     && intro.scrollHeight === 1440
     && within(intro.stage, intro.content)
+    && intro.content.left >= 110 - 0.5
+    && intro.content.right <= 970 + 0.5
+    && intro.styles.copyWidth === "860px"
+    && intro.styles.logoWidth === "340px"
+    && intro.styles.titleSize === "52px"
+    && intro.styles.eventSize === "26px"
+    && intro.styles.bodySize === "25px"
+    && intro.styles.signatureSize === "23px"
     && intro.date === "2026년 8월 19일 (수)"
     && details.box.width === 1080
     && details.box.height === 1440
