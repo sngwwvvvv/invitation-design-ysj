@@ -80,7 +80,7 @@ async (page) => {
     && intro.styles.eventMarginBottom === "48px"
     && intro.styles.bodySize === "25px"
     && intro.styles.signatureSize === "23px"
-    && intro.date === "2026년 8월 19일 (수)"
+    && intro.date === "2026년 8월 26일 (수)"
     && details.box.width === 1080
     && details.box.height === 1440
     && details.scrollWidth === 1080
