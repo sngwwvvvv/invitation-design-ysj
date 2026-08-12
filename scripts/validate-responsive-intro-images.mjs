@@ -18,18 +18,18 @@ const images = {
 
 const intro = html.match(/<section\b[^>]*id=["']intro-section["'][^>]*>[\s\S]*?<\/section>/i)?.[0] ?? "";
 const expectedSources = [
-  /<source\b(?=[^>]*media=["']\(max-width:\s*419px\)["'])(?=[^>]*srcset=["']img\/intro-section-360\.png["'])[^>]*>/i,
-  /<source\b(?=[^>]*media=["']\(max-width:\s*559px\)["'])(?=[^>]*srcset=["']img\/intro-section-480\.png["'])[^>]*>/i,
-  /<img\b(?=[^>]*class=["'][^"']*intro-section-image)(?=[^>]*src=["']img\/intro-section-640\.png["'])[^>]*>/i,
+  /<source\b(?=[^>]*media=["']\(max-width:\s*419px\)["'])(?=[^>]*srcset=["']img\/intro-section-360\.png\?v=20260826["'])[^>]*>/i,
+  /<source\b(?=[^>]*media=["']\(max-width:\s*559px\)["'])(?=[^>]*srcset=["']img\/intro-section-480\.png\?v=20260826["'])[^>]*>/i,
+  /<img\b(?=[^>]*class=["'][^"']*intro-section-image)(?=[^>]*src=["']img\/intro-section-640\.png\?v=20260826["'])[^>]*>/i,
 ];
 
 function pictureMarkup() {
   if (Object.values(images).some((size) => !size)) throw new Error("Render all three intro PNGs first.");
   return `<section id="intro-section" aria-label="호연회계법인 윤성중 부대표 개업 초대 인사말">
   <picture>
-    <source media="(max-width: 419px)" srcset="img/intro-section-360.png" width="720" height="${images[360].height}">
-    <source media="(max-width: 559px)" srcset="img/intro-section-480.png" width="960" height="${images[480].height}">
-    <img class="intro-section-image" src="img/intro-section-640.png" width="1280" height="${images[640].height}" alt="호연회계법인 윤성중 부대표의 2026년 8월 26일 개업 초대 인사말" fetchpriority="high" decoding="async">
+    <source media="(max-width: 419px)" srcset="img/intro-section-360.png?v=20260826" width="720" height="${images[360].height}">
+    <source media="(max-width: 559px)" srcset="img/intro-section-480.png?v=20260826" width="960" height="${images[480].height}">
+    <img class="intro-section-image" src="img/intro-section-640.png?v=20260826" width="1280" height="${images[640].height}" alt="호연회계법인 윤성중 부대표의 2026년 8월 26일 개업 초대 인사말" fetchpriority="high" decoding="async">
   </picture>
 </section>`;
 }
@@ -44,6 +44,11 @@ const checks = [
   ["uses 2x raster widths", images[360]?.width === 720 && images[480]?.width === 960 && images[640]?.width === 1280],
   ["uses portrait intro images", Object.values(images).every((size) => size && size.height > size.width)],
   ["maps the three picture sources", expectedSources.every((pattern) => pattern.test(intro))],
+  ["versions the responsive image URLs", [
+    "img/intro-section-360.png?v=20260826",
+    "img/intro-section-480.png?v=20260826",
+    "img/intro-section-640.png?v=20260826",
+  ].every((url) => intro.includes(url))],
   ["records matching intrinsic dimensions", Object.entries(images).every(([designWidth, size]) => {
     if (!size) return false;
     const tag = designWidth === "640"
