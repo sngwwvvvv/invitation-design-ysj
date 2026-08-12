@@ -63,7 +63,7 @@ async (page) => {
       && result.fontSize === contract.fontSize
       && result.lineCount === contract.lineCount
       && result.separatorVisible === contract.separatorVisible
-      && result.date === "2026년 8월 19일 (수)"
+      && result.date === "2026년 8월 26일 (수)"
       && result.time === "오전 10시 ~ 오후 9시"
       && result.backgroundColor === "rgb(240, 244, 248)"
       && result.color === "rgb(10, 45, 84)"
